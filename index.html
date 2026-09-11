@@ -3,387 +3,223 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Manual do Painel SophIA — guia de uso para recrutadores e gestores</title>
-<meta name="description" content="Manual completo do Painel Administrativo SophIA: entrevistas, kanban, vagas, banco de talentos, currículo match, exportações, WhatsApp e configurações." />
+<title>Manual do Painel SophIA — guia de operação</title>
+<meta name="description" content="Manual de operação do Painel Administrativo SophIA: entrevistas, kanban, vagas, banco de talentos, currículo match, exportações, WhatsApp e configurações." />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='9' y1='6' x2='23' y2='26' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23C79A2E'/%3E%3Cstop offset='.55' stop-color='%23EBD9A8'/%3E%3Cstop offset='1' stop-color='%23FBF8F2'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='7.5' fill='%230F1B2C'/%3E%3Cpath d='M21.3 10.6C21.3 8.5 18.9 7.2 16.1 7.2C13.1 7.2 10.9 8.7 10.9 11.1C10.9 13.7 13.4 14.5 16.1 15.2C18.9 16 21.6 17.1 21.6 20.1C21.6 22.9 19.1 24.8 16 24.8C13 24.8 10.6 23.4 10.6 21.1' fill='none' stroke='url(%23g)' stroke-width='3.4' stroke-linecap='round'/%3E%3C/svg%3E" />
+<meta name="theme-color" content="#0F1B2C" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
-/* ============================================================
-   TOKENS
-   ============================================================ */
 :root{
-  --ink:#12203A;
-  --ink-2:#33415C;
-  --ink-3:#5C6980;
-  --paper:#F6F5F1;
-  --card:#FFFFFF;
-  --rule:#DFDCD3;
-  --rule-2:#EDEBE5;
-  --teal:#146E66;
-  --teal-2:#0E514B;
-  --teal-soft:#E2EFEC;
-  --plum:#7A2E45;
-  --plum-soft:#F7E8EC;
-  --amber:#8A6412;
-  --amber-soft:#F8F0D9;
-  --green:#2E6B3E;
-  --green-soft:#E6F0E6;
-  --indigo:#3D4A8C;
-  --indigo-soft:#E9EBF6;
-  --slate:#5C6980;
-  --slate-soft:#EAECEF;
-  --shadow:0 1px 0 rgba(18,32,58,.05), 0 10px 30px -18px rgba(18,32,58,.35);
-  --maxw:1180px;
-  --serif:"Fraunces", Georgia, "Times New Roman", serif;
-  --sans:"Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --mono:"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --ink:#0F1B2C; --ink-2:#2B3C53; --ink-3:#5A6B80;
+  --bone:#EFEAE1; --bone-2:#E5DED2; --card:#FCFAF6; --white:#FFFFFF;
+  --rule:#D6CDBE; --rule-2:#E6DFD3;
+  --brass:#9A7118; --brass-2:#7A5810; --brass-soft:#F2E6C7;
+  --teal:#15706A; --teal-soft:#DCEBE8;
+  --plum:#7A2E45; --plum-soft:#F4E4E8;
+  --green:#2C6739; --green-soft:#E2EDE3;
+  --indigo:#3B478A; --indigo-soft:#E7E9F5;
+  --slate:#5A6B80; --slate-soft:#E7E7E4;
+  --display:"Archivo", system-ui, sans-serif;
+  --serif:"Source Serif 4", Georgia, serif;
+  --mono:"JetBrains Mono", ui-monospace, Menlo, monospace;
+  --measure:63ch; --margincol:212px; --gutter:36px;
 }
-
 *{box-sizing:border-box}
-html{scroll-behavior:smooth; scroll-padding-top:118px}
-@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} *{animation:none !important; transition:none !important} }
+html{scroll-behavior:smooth; scroll-padding-top:112px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto} *{animation:none !important; transition:none !important}}
+body{margin:0; background:var(--bone); color:var(--ink); font-family:var(--serif); font-size:17.5px; line-height:1.7; -webkit-font-smoothing:antialiased}
+.wrap{max-width:1280px; margin:0 auto; padding:0 clamp(18px,4vw,40px)}
+a{color:var(--brass-2); text-underline-offset:3px; text-decoration-thickness:.5px}
+a:hover{color:var(--ink)}
+:focus-visible{outline:2.5px solid var(--brass); outline-offset:3px; border-radius:2px}
 
-body{
-  margin:0;
-  background:var(--paper);
-  color:var(--ink);
-  font-family:var(--sans);
-  font-size:16px;
-  line-height:1.62;
-  -webkit-font-smoothing:antialiased;
-}
+/* HERO */
+.hero{background:var(--ink); color:#E9E3D8; position:relative; padding:clamp(30px,5vw,54px) 0 0; overflow:hidden}
+.hero::before{content:""; position:absolute; inset:0; pointer-events:none;
+  background:radial-gradient(860px 360px at 80% -14%, rgba(154,113,24,.24), transparent 70%), linear-gradient(180deg, rgba(255,255,255,.035), transparent 38%)}
+.hero > .wrap{position:relative}
+.masthead{display:flex; align-items:center; gap:14px; padding-bottom:26px; border-bottom:1px solid rgba(233,227,216,.16)}
+.mark{width:38px; height:38px; border-radius:8px; flex:none; background:linear-gradient(150deg,#1B2C44,#0A1422); border:1px solid rgba(233,227,216,.2); display:grid; place-items:center}
+.mh-t{font-family:var(--display); font-weight:600; font-size:.98rem; letter-spacing:-.012em; color:#F3EFE7; line-height:1.25}
+.mh-s{font-family:var(--display); font-weight:400; font-size:.8rem; color:#8C9BB0; line-height:1.25}
+.hero h1{font-family:var(--display); font-weight:600; font-size:clamp(2.25rem,6.2vw,4.5rem); line-height:1; letter-spacing:-.035em; margin:clamp(26px,4vw,44px) 0 0; max-width:19ch; color:#FBF8F2}
+.hero-lede{font-size:clamp(1rem,1.6vw,1.16rem); line-height:1.62; color:#AEBACA; max-width:52ch; margin:22px 0 0}
+.hero-meta{display:flex; flex-wrap:wrap; gap:6px 26px; margin:26px 0 0; font-family:var(--display); font-size:.79rem; color:#7F8EA3}
+.hero-meta b{color:#C3CEDC; font-weight:600}
 
-a{color:var(--teal-2); text-underline-offset:3px; text-decoration-thickness:1px}
-a:hover{color:var(--teal)}
-:focus-visible{outline:2.5px solid var(--teal); outline-offset:3px; border-radius:3px}
+/* crachás */
+.badges{padding:clamp(32px,5vw,52px) 0 clamp(34px,5vw,58px)}
+.badges-q{font-family:var(--display); font-weight:600; font-size:1.1rem; color:#FBF8F2; margin:0 0 5px; letter-spacing:-.018em}
+.badges-h{font-size:.96rem; color:#8C9BB0; margin:0 0 22px; max-width:58ch}
+.badge-row{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+@media (max-width:840px){.badge-row{grid-template-columns:1fr}}
+.badge{position:relative; text-align:left; cursor:pointer; font-family:var(--display); background:#14243A; border:1px solid rgba(233,227,216,.18); border-radius:4px 4px 11px 11px; padding:30px 18px 16px; color:#D8E0EA; transition:background .2s, border-color .2s, transform .2s, box-shadow .2s; display:block; width:100%}
+.badge::before{content:""; position:absolute; top:11px; left:50%; transform:translateX(-50%); width:34px; height:7px; border-radius:99px; background:#0A1422; box-shadow:inset 0 1px 0 rgba(0,0,0,.6)}
+.badge:hover{background:#18293F; border-color:rgba(233,227,216,.34)}
+.badge[aria-pressed="true"]{background:var(--card); color:var(--ink); border-color:var(--card); transform:translateY(-3px); box-shadow:0 16px 34px -20px rgba(0,0,0,.85)}
+.badge[aria-pressed="true"]::before{background:var(--bone-2); box-shadow:inset 0 1px 2px rgba(0,0,0,.16)}
+.badge-role{font-weight:700; font-size:1.02rem; letter-spacing:-.018em; display:flex; align-items:center; gap:9px}
+.badge-role .chip{width:8px; height:8px; border-radius:50%; border:1.5px solid currentColor; opacity:.5; flex:none}
+.badge[aria-pressed="true"] .chip{background:var(--brass); border-color:var(--brass); opacity:1}
+.badge-desc{display:block; font-family:var(--serif); font-size:.9rem; line-height:1.5; margin:9px 0 0; opacity:.86}
+.badge-scope{display:flex; gap:14px; margin:14px 0 0; padding-top:11px; border-top:1px dashed rgba(233,227,216,.22); font-size:.72rem; font-weight:500}
+.badge[aria-pressed="true"] .badge-scope{border-top-color:var(--rule)}
+.badge-scope span{opacity:.78}
+.badge-scope b{font-weight:700; opacity:1}
 
-.wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px}
-
-/* ============================================================
-   HERO
-   ============================================================ */
-.hero{
-  background:var(--ink);
-  color:#F2F0EA;
-  padding:56px 0 0;
-  position:relative;
-  overflow:hidden;
-}
-.hero::after{
-  content:"";
-  position:absolute; inset:auto 0 0 0; height:1px;
-  background:linear-gradient(90deg, transparent, rgba(20,110,102,.9), transparent);
-}
-.hero-brand{
-  display:flex; align-items:baseline; gap:12px;
-  font-size:.82rem; letter-spacing:.02em; color:#93A2BC;
-}
-.hero-brand b{font-weight:600; color:#D9E2EF; font-size:.92rem}
-.hero h1{
-  font-family:var(--serif);
-  font-weight:500;
-  font-size:clamp(2.5rem, 6.2vw, 4.4rem);
-  line-height:1.02;
-  letter-spacing:-.02em;
-  margin:22px 0 0;
-  max-width:16ch;
-  color:#FDFCF9;
-}
-.hero-lede{
-  margin:20px 0 0;
-  max-width:56ch;
-  font-size:1.06rem;
-  color:#C3CDDD;
-}
-.hero-lede strong{color:#EDF1F7; font-weight:600}
-
-/* seletor de perfil — o momento interativo */
-.picker{margin:40px 0 0; padding-bottom:52px}
-.picker-q{
-  font-family:var(--serif); font-size:1.22rem; color:#FDFCF9; margin:0 0 4px;
-}
-.picker-help{margin:0 0 18px; color:#93A2BC; font-size:.92rem; max-width:60ch}
-.picker-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:14px}
-@media (max-width:820px){ .picker-grid{grid-template-columns:1fr} }
-.role-card{
-  text-align:left; cursor:pointer;
-  background:rgba(255,255,255,.045);
-  border:1px solid rgba(255,255,255,.16);
-  border-radius:4px;
-  padding:18px 18px 16px;
-  color:#E6EBF3;
-  font-family:var(--sans);
-  transition:background .18s ease, border-color .18s ease, transform .18s ease;
-}
-.role-card:hover{background:rgba(255,255,255,.09); border-color:rgba(255,255,255,.34)}
-.role-card[aria-pressed="true"]{
-  background:#FDFCF9; color:var(--ink); border-color:#FDFCF9;
-  transform:translateY(-2px);
-}
-.role-card h3{margin:0; font-size:1.02rem; font-weight:650; letter-spacing:-.01em}
-.role-card p{margin:7px 0 0; font-size:.86rem; line-height:1.5; color:inherit; opacity:.82}
-.role-card .rc-mark{
-  display:inline-block; width:9px; height:9px; border-radius:50%;
-  background:transparent; border:1.5px solid currentColor; margin-right:9px;
-  vertical-align:middle; opacity:.6;
-}
-.role-card[aria-pressed="true"] .rc-mark{background:var(--teal); border-color:var(--teal); opacity:1}
-
-/* ============================================================
-   BARRA STICKY
-   ============================================================ */
-.bar{
-  position:sticky; top:0; z-index:40;
-  background:rgba(246,245,241,.93);
-  backdrop-filter:saturate(1.4) blur(10px);
-  border-bottom:1px solid var(--rule);
-}
-.bar-in{display:flex; align-items:center; gap:14px; height:62px}
-.bar-role{
-  display:inline-flex; align-items:center; gap:8px;
-  font-size:.84rem; font-weight:600; white-space:nowrap;
-  padding:6px 12px 6px 10px; border-radius:999px;
-  background:var(--teal-soft); color:var(--teal-2); border:1px solid #C8DFDA;
-}
-.bar-role .dot{width:7px;height:7px;border-radius:50%;background:var(--teal)}
+/* BARRA */
+.bar{position:sticky; top:0; z-index:60; background:rgba(239,234,225,.94); backdrop-filter:blur(12px) saturate(1.3); border-bottom:1px solid var(--rule)}
+.bar-in{display:flex; align-items:center; gap:12px; height:60px; font-family:var(--display)}
+.bar-role{display:inline-flex; align-items:center; gap:8px; white-space:nowrap; font-size:.82rem; font-weight:600; padding:7px 13px; border-radius:3px; background:var(--ink); color:#F0EBE1}
+.bar-role .d{width:6px; height:6px; border-radius:50%; background:var(--brass)}
 .search{position:relative; flex:1; min-width:0}
-.search input{
-  width:100%; height:40px; padding:0 40px 0 38px;
-  font-family:var(--sans); font-size:.95rem; color:var(--ink);
-  background:var(--card); border:1px solid var(--rule); border-radius:4px;
-}
-.search input::placeholder{color:#9AA3B2}
-.search .ic{position:absolute; left:12px; top:50%; transform:translateY(-50%); color:#9AA3B2; font-size:.95rem}
-.search kbd{
-  position:absolute; right:10px; top:50%; transform:translateY(-50%);
-  font-family:var(--mono); font-size:.7rem; color:#8C97A8;
-  border:1px solid var(--rule); border-radius:3px; padding:2px 5px; background:var(--paper);
-}
-.toggle{display:inline-flex; align-items:center; gap:9px; font-size:.85rem; color:var(--ink-2); cursor:pointer; white-space:nowrap}
-.toggle input{position:absolute; opacity:0; width:0; height:0}
-.toggle .tr{
-  width:38px; height:21px; border-radius:999px; background:#CFD4DC; position:relative;
-  transition:background .18s ease; flex:none;
-}
-.toggle .tr::after{
-  content:""; position:absolute; top:2.5px; left:2.5px; width:16px; height:16px;
-  border-radius:50%; background:#fff; transition:transform .18s ease; box-shadow:0 1px 2px rgba(0,0,0,.25);
-}
-.toggle input:checked + .tr{background:var(--teal)}
-.toggle input:checked + .tr::after{transform:translateX(17px)}
-.toggle input:focus-visible + .tr{outline:2.5px solid var(--teal); outline-offset:3px}
-@media (max-width:760px){ .toggle span.tg-label{display:none} .bar-in{gap:10px} }
+.search input{width:100%; height:38px; padding:0 42px 0 36px; font-family:var(--display); font-size:.92rem; color:var(--ink); background:var(--white); border:1px solid var(--rule); border-radius:3px}
+.search input::placeholder{color:#A39786}
+.search .ic{position:absolute; left:12px; top:50%; transform:translateY(-50%); color:#A39786; font-size:.9rem}
+.search kbd{position:absolute; right:9px; top:50%; transform:translateY(-50%); font-family:var(--mono); font-size:.68rem; color:#93877A; border:1px solid var(--rule); border-radius:2px; padding:2px 5px; background:var(--bone)}
+.tgl{display:inline-flex; align-items:center; gap:9px; font-size:.82rem; color:var(--ink-2); cursor:pointer; white-space:nowrap; position:relative}
+.tgl input{position:absolute; opacity:0; width:0; height:0}
+.tgl .tr{width:36px; height:20px; border-radius:99px; background:#CFC4B2; position:relative; transition:background .18s; flex:none}
+.tgl .tr::after{content:""; position:absolute; top:2.5px; left:2.5px; width:15px; height:15px; border-radius:50%; background:#fff; transition:transform .18s; box-shadow:0 1px 2px rgba(0,0,0,.3)}
+.tgl input:checked + .tr{background:var(--brass)}
+.tgl input:checked + .tr::after{transform:translateX(16px)}
+.tgl input:focus-visible + .tr{outline:2.5px solid var(--brass); outline-offset:3px}
+@media (max-width:780px){.tgl .lb{display:none}}
 
-/* ============================================================
-   LAYOUT
-   ============================================================ */
-.layout{display:grid; grid-template-columns:232px 1fr; gap:56px; padding:44px 0 96px; align-items:start}
-@media (max-width:1000px){ .layout{grid-template-columns:1fr; gap:0} .rail{display:none} }
+/* LAYOUT */
+.shell{display:grid; grid-template-columns:214px 1fr; gap:52px; padding:46px 0 110px; align-items:start}
+@media (max-width:1080px){.shell{grid-template-columns:1fr; gap:0} .rail{display:none}}
+.rail{position:sticky; top:92px; max-height:calc(100vh - 124px); overflow-y:auto; font-family:var(--display)}
+.rail-t{font-size:.67rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:#9B8E7C; margin:22px 0 7px}
+.rail-t:first-child{margin-top:0}
+.rail a{display:block; padding:4px 0 4px 12px; font-size:.845rem; line-height:1.35; color:var(--ink-2); text-decoration:none; border-left:1.5px solid var(--rule-2)}
+.rail a:hover{color:var(--brass-2); border-left-color:var(--rule)}
+.rail a.on{color:var(--ink); font-weight:600; border-left-color:var(--brass)}
+main{min-width:0; max-width:calc(var(--measure) + var(--gutter) + var(--margincol))}
+@media (min-width:1180px){main{padding-right:calc(var(--margincol) + var(--gutter))}}
 
-.rail{position:sticky; top:96px; max-height:calc(100vh - 130px); overflow-y:auto; padding-right:8px}
-.rail h4{
-  font-family:var(--sans); font-size:.72rem; font-weight:700; letter-spacing:.08em;
-  color:#8B95A6; margin:22px 0 8px; text-transform:uppercase;
-}
-.rail h4:first-child{margin-top:0}
-.rail a{
-  display:block; padding:5px 0 5px 13px; font-size:.875rem; color:var(--ink-2);
-  text-decoration:none; border-left:2px solid var(--rule-2); line-height:1.35;
-}
-.rail a:hover{color:var(--teal-2); border-left-color:#BFD4D0}
-.rail a.on{color:var(--teal-2); font-weight:600; border-left-color:var(--teal)}
+/* SEÇÕES */
+section{margin-bottom:76px; scroll-margin-top:104px; position:relative}
+section > h2{font-family:var(--display); font-weight:600; letter-spacing:-.028em; font-size:clamp(1.65rem,3.4vw,2.45rem); line-height:1.08; color:var(--ink); margin:0 0 20px; padding-bottom:16px; border-bottom:2px solid var(--ink); max-width:var(--measure); display:flex; align-items:baseline; gap:14px}
+section > h2 .n{font-family:var(--mono); font-size:.68rem; font-weight:500; color:var(--brass); border:1px solid var(--brass); border-radius:2px; padding:2px 6px; flex:none; transform:translateY(-5px)}
+.sub{color:var(--ink-2); margin:0 0 30px; font-size:1.08rem; max-width:var(--measure)}
+h3{font-family:var(--display); font-weight:600; font-size:1.13rem; letter-spacing:-.018em; margin:40px 0 10px; max-width:var(--measure)}
+h4{font-family:var(--display); font-weight:600; font-size:.97rem; margin:26px 0 6px}
+p{margin:0 0 16px; max-width:var(--measure)}
+ul,ol{margin:0 0 18px; padding-left:23px; max-width:var(--measure)}
+li{margin:0 0 9px}
+li::marker{color:var(--brass)}
+strong{font-weight:600}
+code{font-family:var(--mono); font-size:.82em; background:#E7E0D3; color:var(--ink); padding:2px 5px; border-radius:2px}
 
-main{min-width:0; max-width:74ch}
+/* nota de margem */
+.margin{font-family:var(--display); font-size:.79rem; line-height:1.54; color:var(--ink-2); border-left:2px solid var(--brass); padding:1px 0 1px 12px; margin:8px 0 22px}
+.margin b{display:block; font-weight:700; color:var(--ink); font-size:.745rem; letter-spacing:.015em; margin-bottom:3px}
+.margin.warn{border-left-color:var(--plum)} .margin.warn b{color:var(--plum)}
+.margin.limit{border-left-color:var(--teal)} .margin.limit b{color:var(--teal)}
+@media (min-width:1180px){.margin{float:right; clear:right; width:var(--margincol); margin-right:calc(-1 * (var(--margincol) + var(--gutter))); margin-bottom:28px}}
 
-/* ============================================================
-   SEÇÕES
-   ============================================================ */
-section{padding-top:8px; margin-bottom:60px; scroll-margin-top:110px}
-section > h2{
-  font-family:var(--serif); font-weight:500; letter-spacing:-.015em;
-  font-size:clamp(1.65rem, 3.2vw, 2.25rem); line-height:1.15;
-  margin:0 0 6px; padding-bottom:14px; border-bottom:1px solid var(--rule);
-}
-section > h2 .num{
-  font-family:var(--mono); font-size:.72rem; color:#9AA3B2; font-weight:500;
-  vertical-align:super; margin-right:10px;
-}
-.sub{color:var(--ink-3); margin:14px 0 26px; font-size:1.02rem; max-width:64ch}
+.slab{background:var(--ink); color:#E5DED2; border-radius:3px; padding:20px 24px; margin:4px 0 26px; max-width:var(--measure); font-size:1rem}
+.slab b.t{display:block; font-family:var(--display); font-weight:600; font-size:.92rem; color:var(--brass-soft); margin-bottom:7px; letter-spacing:-.012em}
+.slab p{margin:0; color:#CBD4E0; max-width:none} .slab p + p{margin-top:11px}
+.slab code{background:rgba(255,255,255,.1); color:#F0EADF}
+.slab a{color:var(--brass-soft)}
 
-h3{font-size:1.08rem; font-weight:650; letter-spacing:-.01em; margin:34px 0 8px}
-h4{font-size:.97rem; font-weight:650; margin:22px 0 6px}
-p{margin:0 0 14px; max-width:68ch}
-ul,ol{margin:0 0 16px; padding-left:22px; max-width:66ch}
-li{margin:0 0 7px}
-li::marker{color:#9AA3B2}
-strong{font-weight:650}
-
-/* trilha do caminho na interface */
-.path{
-  display:flex; flex-wrap:wrap; align-items:center; gap:6px;
-  font-size:.83rem; color:var(--ink-2);
-  background:var(--card); border:1px solid var(--rule); border-radius:4px;
-  padding:9px 13px; margin:0 0 18px; max-width:66ch;
-}
+.path{display:flex; flex-wrap:wrap; align-items:center; gap:7px; font-family:var(--display); font-size:.84rem; color:var(--ink-2); background:var(--card); border:1px solid var(--rule); border-left:3px solid var(--brass); border-radius:2px; padding:10px 14px; margin:0 0 22px; max-width:var(--measure)}
+.path .lead{font-size:.66rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:#9B8E7C; margin-right:3px}
 .path b{font-weight:600; color:var(--ink)}
-.path i{font-style:normal; color:#AFB7C4; padding:0 1px}
-.path .lead{color:#8B95A6; margin-right:2px}
+.path i{font-style:normal; color:#B6A995}
+.path .q{color:#9B8E7C}
 
-/* pílulas de permissão */
-.perms{display:flex; flex-wrap:wrap; gap:7px; margin:0 0 20px}
-.pill{
-  display:inline-flex; align-items:center; gap:6px;
-  font-size:.75rem; font-weight:600; letter-spacing:.005em;
-  padding:4px 10px; border-radius:999px; border:1px solid;
-}
-.pill.adm{background:var(--plum-soft); color:var(--plum); border-color:#E9CDD5}
-.pill.all{background:var(--indigo-soft); color:var(--indigo); border-color:#D3D8EE}
-.pill.own{background:var(--slate-soft); color:var(--slate); border-color:#DBDFE5}
-.pill.yes{background:var(--green-soft); color:var(--green); border-color:#CFE2D0}
-.pill.no{background:#F1EFEA; color:#8B95A6; border-color:var(--rule)}
+.perms{display:flex; flex-wrap:wrap; gap:7px; margin:0 0 22px; max-width:var(--measure)}
+.pill{display:inline-flex; align-items:center; font-family:var(--display); font-size:.735rem; font-weight:600; padding:4px 10px; border-radius:99px; border:1px solid}
+.pill.adm{background:var(--plum-soft); color:var(--plum); border-color:#E4CDD3}
+.pill.all{background:var(--indigo-soft); color:var(--indigo); border-color:#D2D6EC}
+.pill.own{background:var(--slate-soft); color:var(--slate); border-color:#D8D6D0}
+.pill.no{background:transparent; color:#98907F; border-color:var(--rule); border-style:dashed}
 
-/* blocos de aviso */
-.note{
-  border-left:3px solid var(--teal); background:var(--teal-soft);
-  padding:14px 16px; border-radius:0 4px 4px 0; margin:0 0 18px; max-width:66ch;
-  font-size:.94rem;
-}
-.note p:last-child{margin-bottom:0}
-.note.limit{border-left-color:var(--amber); background:var(--amber-soft)}
-.note.stop{border-left-color:var(--plum); background:var(--plum-soft)}
-.note .lbl{display:block; font-weight:700; font-size:.78rem; margin-bottom:4px; color:inherit}
-.note.limit .lbl{color:var(--amber)}
-.note.stop .lbl{color:var(--plum)}
-.note:not(.limit):not(.stop) .lbl{color:var(--teal-2)}
-
-/* passos numerados */
-ol.steps{list-style:none; padding:0; counter-reset:st; margin:0 0 20px}
-ol.steps > li{
-  counter-increment:st; position:relative; padding:0 0 16px 42px; margin:0;
-  border-left:1px solid var(--rule); margin-left:13px;
-}
+ol.steps{list-style:none; padding:0; counter-reset:st; margin:0 0 24px; max-width:var(--measure)}
+ol.steps > li{counter-increment:st; position:relative; padding:0 0 20px 40px; margin:0 0 0 12px; border-left:1px solid var(--rule)}
 ol.steps > li:last-child{border-left-color:transparent; padding-bottom:0}
-ol.steps > li::before{
-  content:counter(st); position:absolute; left:-13px; top:-2px;
-  width:26px; height:26px; border-radius:50%;
-  background:var(--card); border:1px solid var(--rule); color:var(--ink-2);
-  font-family:var(--mono); font-size:.75rem; font-weight:500;
-  display:flex; align-items:center; justify-content:center;
-}
-ol.steps > li strong{display:block; margin-bottom:2px}
+ol.steps > li::before{content:counter(st); position:absolute; left:-12px; top:-1px; width:24px; height:24px; border-radius:50%; background:var(--ink); color:var(--brass-soft); font-family:var(--mono); font-size:.71rem; display:flex; align-items:center; justify-content:center}
+ol.steps > li strong{display:block; font-family:var(--display); font-size:.97rem}
 
-/* tabela */
-.tw{overflow-x:auto; margin:0 0 20px; border:1px solid var(--rule); border-radius:4px; background:var(--card)}
-table{border-collapse:collapse; width:100%; font-size:.9rem; min-width:520px}
+.tw{overflow-x:auto; margin:0 0 24px; border:1px solid var(--rule); border-radius:3px; background:var(--card); max-width:var(--measure)}
+table{border-collapse:collapse; width:100%; font-family:var(--display); font-size:.87rem; min-width:540px}
 th,td{padding:11px 14px; text-align:left; border-bottom:1px solid var(--rule-2); vertical-align:top}
-thead th{
-  font-size:.76rem; font-weight:700; letter-spacing:.04em; color:#7B8798;
-  background:#FBFAF7; border-bottom:1px solid var(--rule); text-transform:uppercase;
-}
+thead th{font-size:.69rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#8A7F6F; background:#E9E2D6; border-bottom:1px solid var(--rule)}
 tbody tr:last-child td{border-bottom:none}
-td code, p code, li code{
-  font-family:var(--mono); font-size:.84em; background:#EEF0F3; color:var(--ink);
-  padding:1.5px 5px; border-radius:3px;
-}
-th.hl, td.hl{background:var(--teal-soft)}
+th.hl,td.hl{background:var(--brass-soft); box-shadow:inset 2px 0 0 var(--brass), inset -2px 0 0 var(--brass)}
 td.ok{color:var(--green); font-weight:600}
-td.nope{color:#A0A8B6}
+td.nope{color:#A49A8A}
 
-/* pílulas de status do funil */
-.funnel{display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin:0 0 18px}
-.sp{font-size:.78rem; font-weight:600; padding:4px 11px; border-radius:999px; border:1px solid}
-.sp.rec{background:var(--slate-soft); color:var(--slate); border-color:#DBDFE5}
-.sp.ana{background:var(--amber-soft); color:var(--amber); border-color:#EADFBF}
-.sp.ent{background:var(--teal-soft); color:var(--teal-2); border-color:#C8DFDA}
-.sp.fbk{background:var(--indigo-soft); color:var(--indigo); border-color:#D3D8EE}
-.sp.apr{background:var(--green-soft); color:var(--green); border-color:#CFE2D0}
-.sp.rep{background:var(--plum-soft); color:var(--plum); border-color:#E9CDD5}
-.funnel .arw{color:#B6BDC9; font-size:.85rem}
+figure{margin:0 0 28px; max-width:var(--measure)}
+figure svg{display:block; width:100%; height:auto; background:var(--card); border:1px solid var(--rule); border-radius:3px}
+figcaption{font-family:var(--display); font-size:.775rem; line-height:1.5; color:var(--ink-3); margin-top:10px; padding-left:12px; border-left:2px solid var(--rule)}
 
-/* cartão de bloqueio por perfil */
-.gate{
-  display:none; align-items:flex-start; gap:11px;
-  background:#F1EFEA; border:1px dashed #CFCABD; border-radius:4px;
-  padding:12px 14px; margin:0 0 18px; max-width:66ch; font-size:.9rem; color:#6A6558;
-}
-.gate.show{display:flex}
-.gate svg{flex:none; margin-top:2px}
-.blocked{opacity:.44}
-.blocked .path, .blocked ol, .blocked ul, .blocked .note{filter:grayscale(.5)}
-.hidden-by-filter{display:none !important}
+.gate{display:none; gap:11px; align-items:flex-start; background:#E7E0D3; border:1px dashed #C0B4A0; border-radius:3px; padding:13px 15px; margin:0 0 22px; max-width:var(--measure); font-family:var(--display); font-size:.85rem; line-height:1.5; color:#6E6455}
+.gate.on{display:flex}
+.gate svg{flex:none; margin-top:3px}
+.blocked > *:not(.gate):not(h2){opacity:.4}
+.hid{display:none !important}
 
-/* FAQ */
-details.q{
-  border:1px solid var(--rule); border-radius:4px; background:var(--card);
-  margin:0 0 10px; max-width:68ch; overflow:hidden;
-}
-details.q > summary{
-  cursor:pointer; padding:13px 16px; font-weight:600; font-size:.95rem;
-  list-style:none; display:flex; align-items:flex-start; gap:11px;
-}
+details.q{border-bottom:1px solid var(--rule); max-width:var(--measure)}
+details.q:first-of-type{border-top:1px solid var(--rule)}
+details.q > summary{cursor:pointer; padding:15px 8px 15px 0; font-family:var(--display); font-weight:600; font-size:.96rem; list-style:none; display:flex; align-items:flex-start; gap:13px; color:var(--ink)}
 details.q > summary::-webkit-details-marker{display:none}
-details.q > summary::before{
-  content:"+"; font-family:var(--mono); color:var(--teal); font-size:1.05rem;
-  line-height:1.35; flex:none;
-}
-details.q[open] > summary::before{content:"–"}
-details.q[open] > summary{border-bottom:1px solid var(--rule-2)}
-details.q .a{padding:14px 16px 4px 16px}
-details.q .a p:last-child{margin-bottom:14px}
+details.q > summary::before{content:"+"; font-family:var(--mono); color:var(--brass); font-size:1.1rem; line-height:1.25; flex:none}
+details.q[open] > summary::before{content:"\2212"}
+details.q .a{padding:0 0 8px 26px}
+details.q .a > *:last-child{margin-bottom:16px}
 
-/* checklist primeiro dia */
-.check{list-style:none; padding:0; margin:0 0 18px; max-width:66ch}
-.check li{
-  display:flex; gap:12px; align-items:flex-start;
-  padding:11px 14px; border:1px solid var(--rule); border-radius:4px;
-  background:var(--card); margin-bottom:8px;
-}
-.check input{margin-top:4px; width:17px; height:17px; accent-color:var(--teal); flex:none; cursor:pointer}
-.check label{cursor:pointer; font-size:.93rem}
-.check li.done{background:#F3F6F4; border-color:#D3E3DE}
-.check li.done label{color:#7C8A86; text-decoration:line-through; text-decoration-color:#B9C9C4}
-.progress{
-  display:flex; align-items:center; gap:12px; margin:0 0 16px;
-  font-size:.85rem; color:var(--ink-3);
-}
-.progress .track{flex:1; max-width:280px; height:5px; background:var(--rule-2); border-radius:999px; overflow:hidden}
-.progress .fill{height:100%; width:0; background:var(--teal); transition:width .25s ease}
+.check{list-style:none; padding:0; margin:0 0 20px; max-width:var(--measure)}
+.check li{display:flex; gap:13px; align-items:flex-start; padding:12px 15px; border:1px solid var(--rule); border-radius:3px; background:var(--card); margin-bottom:8px}
+.check input{margin-top:5px; width:16px; height:16px; accent-color:var(--brass); flex:none; cursor:pointer}
+.check label{cursor:pointer; font-size:.96rem}
+.check label strong{font-family:var(--display); font-size:.93rem}
+.check li.done{background:#E9E2D6}
+.check li.done label{color:#8D8373; text-decoration:line-through; text-decoration-color:#BCB09C}
+.prog{display:flex; align-items:center; gap:14px; margin:0 0 18px; font-family:var(--display); font-size:.82rem; color:var(--ink-3); max-width:var(--measure)}
+.prog .track{flex:1; max-width:260px; height:4px; background:var(--rule-2); border-radius:99px; overflow:hidden}
+.prog .fill{height:100%; width:0; background:var(--brass); transition:width .25s}
 
-/* glossário */
-dl.gloss{margin:0; max-width:68ch}
-dl.gloss dt{font-weight:650; margin-top:16px; font-size:.96rem}
-dl.gloss dd{margin:3px 0 0; color:var(--ink-2); font-size:.93rem}
+dl.gloss{margin:0; max-width:var(--measure)}
+dl.gloss dt{font-family:var(--display); font-weight:600; font-size:.96rem; margin-top:20px; color:var(--ink)}
+dl.gloss dt:first-child{margin-top:0}
+dl.gloss dd{margin:2px 0 0; color:var(--ink-2); font-size:.96rem}
 
-/* busca */
-mark{background:#FCEFBC; color:inherit; padding:0 2px; border-radius:2px}
-.noresult{display:none; padding:26px; text-align:center; color:var(--ink-3); border:1px dashed var(--rule); border-radius:4px}
-.noresult.show{display:block}
+mark{background:#F7E3A8; color:inherit; padding:0 2px; border-radius:2px}
+.none{display:none; padding:30px; text-align:center; font-family:var(--display); font-size:.9rem; color:var(--ink-3); border:1px dashed var(--rule); border-radius:3px; max-width:var(--measure)}
+.none.on{display:block}
 
-/* rodapé */
-footer{border-top:1px solid var(--rule); background:#F1EFE9; padding:34px 0 44px; font-size:.87rem; color:var(--ink-3)}
-footer .fin{display:flex; flex-wrap:wrap; gap:20px; justify-content:space-between; align-items:flex-start}
-footer p{margin:0 0 8px; max-width:58ch}
+footer{background:var(--ink); color:#9FADBF; padding:44px 0 54px; font-family:var(--display); font-size:.85rem}
+footer .fin{display:grid; grid-template-columns:1fr auto; gap:28px}
+@media (max-width:760px){footer .fin{grid-template-columns:1fr}}
+footer b{color:#E9E3D8; font-weight:600}
+footer p{margin:0 0 9px; max-width:54ch; color:#9FADBF}
+footer kbd{font-family:var(--mono); font-size:.72rem; border:1px solid rgba(233,227,216,.28); border-radius:2px; padding:1px 5px; color:#D5DDE7}
 
-.totop{
-  position:fixed; right:22px; bottom:22px; z-index:50;
-  width:42px; height:42px; border-radius:50%; border:1px solid var(--rule);
-  background:var(--card); color:var(--ink-2); cursor:pointer; box-shadow:var(--shadow);
-  display:none; align-items:center; justify-content:center; font-size:1rem;
-}
-.totop.show{display:flex}
+.totop{position:fixed; right:20px; bottom:20px; z-index:70; width:42px; height:42px; border-radius:3px; border:1px solid var(--rule); background:var(--card); color:var(--ink); cursor:pointer; display:none; align-items:center; justify-content:center; box-shadow:0 8px 20px -12px rgba(15,27,44,.6)}
+.totop.on{display:flex}
 
 @media print{
-  .bar,.rail,.totop,.picker,.hero-lede{display:none !important}
-  .hero{background:#fff; color:#000; padding:0}
-  .hero h1{color:#000}
-  .layout{grid-template-columns:1fr; padding:0}
-  .blocked{opacity:1}
-  details.q{break-inside:avoid}
-  details.q > summary::before{content:""}
+  .bar,.rail,.totop,.badges,.hero-meta,.gate{display:none !important}
+  .hero{background:#fff !important; color:#000; padding:0}
+  .hero::before{display:none}
+  .hero h1,.mh-t{color:#000}
+  .hero-lede,.mh-s{color:#333}
+  .shell{grid-template-columns:1fr; padding:0}
+  main{padding-right:0; max-width:none}
+  .margin{float:none; width:auto; margin:0 0 14px}
+  .slab{background:#fff; color:#000; border:1.5px solid #000}
+  .slab p{color:#000} .slab b.t{color:#000}
+  .blocked > *{opacity:1 !important}
   details.q .a{display:block !important}
-  section{break-inside:auto}
-  a{color:#000}
+  details.q > summary::before{content:""}
+  figure,table,ol.steps{break-inside:avoid}
+  footer{background:#fff; color:#333}
 }
 </style>
 </head>
@@ -391,25 +227,48 @@ footer p{margin:0 0 8px; max-width:58ch}
 
 <header class="hero">
   <div class="wrap">
-    <div class="hero-brand"><b>SophIA</b> <span>Painel Administrativo · manual de uso</span></div>
-    <h1>Tudo o que dá para fazer no painel, explicado na ordem em que você precisa.</h1>
-    <p class="hero-lede">Este é o guia das pessoas que usam o painel todo dia: recrutadores, gestores e administradores. Ele cobre entrevistas, quadro kanban, vagas, banco de talentos, triagem de currículos, exportações, WhatsApp e configurações — <strong>sem exigir nada de conhecimento técnico</strong>.</p>
+    <div class="masthead">
+      <span class="mark" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 32 32">
+          <defs><linearGradient id="sg" x1="9" y1="6" x2="23" y2="26" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#C79A2E"/><stop offset=".55" stop-color="#EBD9A8"/><stop offset="1" stop-color="#FBF8F2"/>
+          </linearGradient></defs>
+          <path d="M21.3 10.6C21.3 8.5 18.9 7.2 16.1 7.2C13.1 7.2 10.9 8.7 10.9 11.1C10.9 13.7 13.4 14.5 16.1 15.2C18.9 16 21.6 17.1 21.6 20.1C21.6 22.9 19.1 24.8 16 24.8C13 24.8 10.6 23.4 10.6 21.1" fill="none" stroke="url(#sg)" stroke-width="3.4" stroke-linecap="round"/>
+        </svg>
+      </span>
+      <span>
+        <span class="mh-t">Painel Administrativo SophIA</span><br>
+        <span class="mh-s">Manual de operação &middot; edição 2026</span>
+      </span>
+    </div>
 
-    <div class="picker">
-      <p class="picker-q">Qual é o seu tipo de acesso?</p>
-      <p class="picker-help">O painel mostra coisas diferentes para cada perfil. Escolha o seu e o manual se ajusta: o que o seu acesso não permite fica marcado, com o motivo. Na dúvida, pergunte ao administrador da sua empresa — ou escolha “Vê tudo”, que é o caso mais comum.</p>
-      <div class="picker-grid" role="group" aria-label="Escolha o seu tipo de acesso">
-        <button class="role-card" data-role="adm" aria-pressed="false">
-          <h3><span class="rc-mark"></span>Administrador</h3>
-          <p>Gerencia os usuários da empresa, enxerga todos os dados e é o único que pode excluir candidatos e vagas.</p>
+    <h1>O que fazer, onde clicar e o que o painel faz sozinho.</h1>
+    <p class="hero-lede">Escrito para quem opera o recrutamento todo dia — recrutadores, gestores e administradores. Nenhuma seção exige conhecimento técnico, e cada uma começa dizendo onde a tela fica e quem tem permissão para usá-la.</p>
+    <div class="hero-meta">
+      <span><b>27</b> seções</span>
+      <span><b>5</b> módulos do painel</span>
+      <span><b>13</b> problemas comuns resolvidos</span>
+      <span>tecle <b>/</b> para buscar</span>
+    </div>
+
+    <div class="badges">
+      <p class="badges-q">Antes de começar: qual crachá é o seu?</p>
+      <p class="badges-h">O painel mostra coisas diferentes para cada tipo de acesso. Escolha o seu e o manual se ajusta — o que você não pode fazer fica marcado, com o motivo e o caminho para liberar. Na dúvida, “vê tudo” é o caso mais comum.</p>
+      <div class="badge-row" role="group" aria-label="Escolha o seu tipo de acesso">
+        <button class="badge" data-role="adm" aria-pressed="false">
+          <span class="badge-role"><span class="chip"></span>Administrador</span>
+          <span class="badge-desc">Gerencia os usuários da empresa, enxerga todos os dados e é o único que pode excluir candidatos e vagas.</span>
+          <span class="badge-scope"><span>Vê <b>tudo</b></span><span>Exclui <b>sim</b></span><span>Usuários <b>sim</b></span></span>
         </button>
-        <button class="role-card" data-role="all" aria-pressed="true">
-          <h3><span class="rc-mark"></span>Vê tudo</h3>
-          <p>Enxerga todas as entrevistas e vagas da empresa e usa todos os módulos, mas não exclui dados nem gerencia usuários.</p>
+        <button class="badge" data-role="all" aria-pressed="true">
+          <span class="badge-role"><span class="chip"></span>Vê tudo</span>
+          <span class="badge-desc">Enxerga todas as entrevistas e vagas da empresa e usa todos os módulos, sem excluir dados nem mexer em acessos.</span>
+          <span class="badge-scope"><span>Vê <b>tudo</b></span><span>Exclui <b>não</b></span><span>Usuários <b>não</b></span></span>
         </button>
-        <button class="role-card" data-role="own" aria-pressed="false">
-          <h3><span class="rc-mark"></span>Vê só o que criou</h3>
-          <p>Enxerga apenas os registros em que você consta como criador da vaga. Sem exclusão, WhatsApp, banco de talentos ou assistente.</p>
+        <button class="badge" data-role="own" aria-pressed="false">
+          <span class="badge-role"><span class="chip"></span>Vê só o que criou</span>
+          <span class="badge-desc">Enxerga apenas os registros em que você consta como criador da vaga. Sem banco de talentos, currículos, WhatsApp ou assistente.</span>
+          <span class="badge-scope"><span>Vê <b>o seu</b></span><span>Exclui <b>não</b></span><span>Usuários <b>não</b></span></span>
         </button>
       </div>
     </div>
@@ -418,53 +277,53 @@ footer p{margin:0 0 8px; max-width:58ch}
 
 <div class="bar">
   <div class="wrap bar-in">
-    <span class="bar-role" id="barRole"><span class="dot"></span><span id="barRoleTxt">Vê tudo</span></span>
+    <span class="bar-role"><span class="d"></span><span id="barRoleTxt">Vê tudo</span></span>
     <div class="search">
-      <span class="ic" aria-hidden="true">⌕</span>
-      <input type="search" id="q" placeholder="Buscar no manual: kanban, reativar vaga, créditos…" aria-label="Buscar no manual" autocomplete="off" />
+      <span class="ic" aria-hidden="true">&#9906;</span>
+      <input type="search" id="q" placeholder="Buscar: kanban, reativar vaga, créditos, dossiê…" aria-label="Buscar no manual" autocomplete="off" />
       <kbd>/</kbd>
     </div>
-    <label class="toggle" title="Esconde do manual tudo que o seu acesso não permite">
+    <label class="tgl" title="Esconde tudo que o seu acesso não permite">
       <input type="checkbox" id="onlyMine" />
       <span class="tr"></span>
-      <span class="tg-label">Só o que eu posso fazer</span>
+      <span class="lb">Só o que eu posso fazer</span>
     </label>
   </div>
 </div>
 
-<div class="wrap layout">
-  <nav class="rail" aria-label="Índice do manual">
-    <h4>Começo</h4>
+<div class="wrap shell">
+  <nav class="rail" aria-label="Índice">
+    <p class="rail-t">Começo</p>
     <a href="#inicio">O painel em 2 minutos</a>
     <a href="#primeiro-dia">Trilha do primeiro dia</a>
     <a href="#entrar">Entrar no painel</a>
     <a href="#papeis">Quem pode o quê</a>
-    <h4>Candidatos</h4>
+    <p class="rail-t">Candidatos</p>
     <a href="#entrevistas">Painel de Entrevistas</a>
     <a href="#filtros">Filtrar e selecionar</a>
     <a href="#kanban">Quadro Kanban</a>
     <a href="#ficha">Ficha do candidato</a>
-    <a href="#dossie">Dossiê e relatórios</a>
+    <a href="#dossie">Dossiê</a>
     <a href="#exportar">Exportações</a>
     <a href="#emails">E-mails aos candidatos</a>
-    <h4>Vagas</h4>
+    <p class="rail-t">Vagas</p>
     <a href="#cargos">Gestão de Cargos</a>
     <a href="#criar-vaga">Criar e editar vaga</a>
     <a href="#limite">Limite e validade</a>
     <a href="#arquivar">Arquivar e reativar</a>
     <a href="#convites">Convidar candidatos</a>
     <a href="#carteira">Exportar a carteira</a>
-    <h4>Encontrar gente</h4>
+    <p class="rail-t">Encontrar gente</p>
     <a href="#talentos">Banco de Talentos</a>
     <a href="#curriculos">Currículo Match</a>
     <a href="#whatsapp">WhatsApp em massa</a>
-    <h4>Sua empresa</h4>
+    <p class="rail-t">Sua empresa</p>
     <a href="#portal">Site de vagas e QR Code</a>
     <a href="#config">Configurações</a>
     <a href="#usuarios">Gestão de Usuários</a>
     <a href="#notificacoes">Notificações</a>
     <a href="#assistente">Assistente SophIA</a>
-    <h4>Apoio</h4>
+    <p class="rail-t">Apoio</p>
     <a href="#faq">Perguntas frequentes</a>
     <a href="#glossario">Glossário</a>
   </nav>
@@ -472,97 +331,109 @@ footer p{margin:0 0 8px; max-width:58ch}
   <main id="main">
 
 <section id="inicio">
-  <h2><span class="num">01</span>O painel em 2 minutos</h2>
-  <p class="sub">O Painel SophIA é onde a sua empresa acompanha tudo o que a inteligência artificial faz no recrutamento: as entrevistas realizadas, os candidatos avaliados e as vagas abertas. Você não conduz a entrevista aqui — ela acontece na plataforma, com o candidato. Aqui você lê o resultado, decide e age.</p>
-
-  <p>São cinco áreas no menu de cima, e elas resolvem coisas diferentes:</p>
+  <h2><span class="n">01</span>O painel em 2 minutos</h2>
+  <p class="sub">O Painel SophIA é onde a sua empresa acompanha o que a inteligência artificial faz no recrutamento: entrevistas realizadas, candidatos avaliados e vagas abertas. A entrevista em si acontece na plataforma, com o candidato. Aqui você lê o resultado, decide e age.</p>
 
   <div class="tw">
     <table>
-      <thead><tr><th>Área</th><th>Para quê</th><th>Você chega aqui quando…</th></tr></thead>
+      <thead><tr><th>Área</th><th>Para quê</th><th>Você vem aqui quando…</th></tr></thead>
       <tbody>
         <tr><td><strong>Painel de Entrevistas</strong></td><td>Ver, filtrar, avaliar e mover candidatos pelo funil</td><td>…quer saber quem se candidatou e quem vale entrevistar</td></tr>
         <tr><td><strong>Gestão de Cargos</strong></td><td>Criar vagas, definir a triagem, convidar e arquivar</td><td>…abriu uma posição nova</td></tr>
         <tr><td><strong>Banco de Talentos</strong></td><td>Achar, na base que você já tem, gente boa para a vaga nova</td><td>…não quer começar do zero a cada vaga</td></tr>
         <tr><td><strong>Currículo Match</strong></td><td>Mandar currículos em lote e ver a aderência deles às suas vagas</td><td>…recebeu uma pilha de currículos por fora</td></tr>
-        <tr><td><strong>Configurações</strong></td><td>Logo, e-mails, relatórios, site de vagas e usuários</td><td>…quer que o painel fale com a cara da sua empresa</td></tr>
+        <tr><td><strong>Configurações</strong></td><td>Logo, e-mails, relatórios, site de vagas e usuários</td><td>…quer o painel com a cara da sua empresa</td></tr>
       </tbody>
     </table>
   </div>
 
   <h3>O funil, que é a espinha do produto</h3>
-  <p>Todo candidato ocupa um dos seis estados abaixo. Ele é a mesma informação na lista, no kanban, nos cartões de resumo e nos relatórios — muda só o formato.</p>
-  <div class="funnel">
-    <span class="sp rec">Recebido</span><span class="arw">→</span>
-    <span class="sp ana">Em análise</span><span class="arw">→</span>
-    <span class="sp ent">Entrevista</span><span class="arw">→</span>
-    <span class="sp fbk">Feedback enviado</span><span class="arw">→</span>
-    <span class="sp apr">Aprovado</span>
-    <span class="sp rep">Reprovado</span>
-  </div>
-  <div class="note">
-    <span class="lbl">Por que “Feedback enviado” vem antes de Aprovado e Reprovado</span>
-    <p>O painel guarda só o estado atual, não o histórico. Se você mover alguém de <strong>Aprovado</strong> de volta para <strong>Feedback enviado</strong>, a aprovação é apagada. Com o feedback à esquerda, esse movimento é um passo para trás — o que já avisa visualmente que algo está sendo desfeito. Ainda assim o painel pede confirmação antes de sair de Aprovado ou Reprovado.</p>
-  </div>
+  <p>Todo candidato ocupa um destes seis estados. É a mesma informação na lista, no kanban, nos cartões de resumo e nos relatórios — muda só o formato.</p>
+
+  <figure>
+    <svg viewBox="0 0 700 172" role="img" aria-label="Diagrama do funil: Recebido, Em análise, Entrevista, Feedback enviado e, em paralelo, Aprovado ou Reprovado">
+      <g font-family="Archivo, sans-serif" font-size="11.5" font-weight="600" text-anchor="middle">
+        <rect x="14" y="70" width="104" height="34" rx="17" fill="#E7E7E4" stroke="#D8D6D0"/><text x="66" y="92" fill="#5A6B80">Recebido</text>
+        <rect x="134" y="70" width="104" height="34" rx="17" fill="#F6EFD9" stroke="#E6D8B4"/><text x="186" y="92" fill="#8A6412">Em análise</text>
+        <rect x="254" y="70" width="104" height="34" rx="17" fill="#DCEBE8" stroke="#BFD9D4"/><text x="306" y="92" fill="#15706A">Entrevista</text>
+        <rect x="374" y="70" width="104" height="34" rx="17" fill="#E7E9F5" stroke="#D2D6EC"/><text x="426" y="92" fill="#3B478A" font-size="10.5">Feedback enviado</text>
+        <rect x="520" y="30" width="116" height="34" rx="17" fill="#E2EDE3" stroke="#C8DCCB"/><text x="578" y="52" fill="#2C6739">Aprovado</text>
+        <rect x="520" y="110" width="116" height="34" rx="17" fill="#F4E4E8" stroke="#E4CDD3"/><text x="578" y="132" fill="#7A2E45">Reprovado</text>
+      </g>
+      <g stroke="#B6A995" stroke-width="1.4" fill="none">
+        <path d="M120 87h10M238 87h10M358 87h10"/>
+        <path d="M480 87h14c6 0 8-2 8-8V55c0-5 3-8 8-8h8"/>
+        <path d="M480 87h14c6 0 8 2 8 8v24c0 5 3 8 8 8h8"/>
+      </g>
+      <g fill="#B6A995">
+        <path d="M132 87l-7-4v8zM252 87l-7-4v8zM372 87l-7-4v8zM520 47l-8-4v8zM520 127l-8-4v8z"/>
+      </g>
+      <g stroke="#7A2E45" stroke-width="1.3" fill="none" stroke-dasharray="4 3">
+        <path d="M578 26V14c0-4-3-6-7-6H433c-4 0-7 2-7 6v52"/>
+      </g>
+      <path d="M426 70l-4-8h8z" fill="#7A2E45"/>
+      <text x="500" y="163" font-family="Archivo, sans-serif" font-size="10.5" fill="#7A2E45" text-anchor="middle">voltar para cá apaga a decisão</text>
+    </svg>
+    <figcaption>Aprovado e Reprovado são saídas paralelas, não sequência. O caminho tracejado existe, mas desfaz a decisão registrada — por isso o painel pede confirmação antes.</figcaption>
+  </figure>
+
+  <div class="margin"><b>Por que nessa ordem</b>O painel guarda só o estado atual, sem histórico. Com o feedback à esquerda, desfazer uma decisão vira um arrasto para trás — o desenho já avisa que algo está sendo desfeito.</div>
 
   <h3>Uma coisa que vale saber antes de tudo</h3>
-  <p>Currículos, vídeos e relatórios comportamentais dos candidatos <strong>só abrem para quem está logado no painel</strong>. Links antigos que circularam em planilhas exportadas antes de agosto de 2026 não abrem mais — isso é proposital, porque eram endereços públicos. Se alguém precisa ver o currículo de um candidato, o caminho é entrar no painel, não receber um link.</p>
+  <p>Currículos, vídeos e relatórios comportamentais <strong>só abrem para quem está logado no painel</strong>. Links antigos que circularam em planilhas exportadas antes de agosto de 2026 não abrem mais — isso é proposital, porque eram endereços públicos. Quem precisa ver o currículo de alguém entra no painel; não recebe um link.</p>
 </section>
 
 <section id="primeiro-dia">
-  <h2><span class="num">02</span>Trilha do primeiro dia</h2>
+  <h2><span class="n">02</span>Trilha do primeiro dia</h2>
   <p class="sub">Se o painel acabou de ser liberado para você, faça esta sequência. São dez minutos e evitam a maior parte das dúvidas que aparecem depois.</p>
 
-  <div class="progress"><div class="track"><div class="fill" id="pgFill"></div></div><span id="pgTxt">0 de 8 concluídos</span></div>
+  <div class="prog"><div class="track"><div class="fill" id="pgFill"></div></div><span id="pgTxt">0 de 8 concluídos</span></div>
 
   <ul class="check" id="checklist">
     <li><input type="checkbox" id="c1"><label for="c1"><strong>Entre e troque a senha provisória.</strong> Se um administrador criou o seu acesso, o painel força essa tela no primeiro login.</label></li>
-    <li><input type="checkbox" id="c2"><label for="c2"><strong>Descubra o seu tipo de acesso.</strong> Abra Configurações: se você vê “Gestão de Usuários” no menu lateral, você é administrador.</label></li>
-    <li><input type="checkbox" id="c3"><label for="c3"><strong>Suba o logo da empresa.</strong> Configurações → Identidade Visual. Ele passa a sair em todos os relatórios.</label></li>
-    <li><input type="checkbox" id="c4"><label for="c4"><strong>Defina o e-mail de resposta.</strong> Configurações → E-mails. É para onde vão as respostas dos candidatos.</label></li>
-    <li><input type="checkbox" id="c5"><label for="c5"><strong>Escreva ao menos um template de e-mail.</strong> Configurações → Templates. Evita redigir do zero toda vez.</label></li>
-    <li><input type="checkbox" id="c6"><label for="c6"><strong>Abra o Painel de Entrevistas e aplique um filtro.</strong> Escolha um cargo e veja os números do topo mudarem junto.</label></li>
-    <li><input type="checkbox" id="c7"><label for="c7"><strong>Abra o dossiê de um candidato.</strong> Botão de relatório na linha dele. É o documento que você vai enviar aos gestores.</label></li>
-    <li><input type="checkbox" id="c8"><label for="c8"><strong>Crie uma vaga de teste e arquive depois.</strong> Vale para entender o código da vaga e o disparo automático do Banco de Talentos.</label></li>
+    <li><input type="checkbox" id="c2"><label for="c2"><strong>Descubra o seu tipo de acesso.</strong> Abra Configurações: se aparecer “Gestão de Usuários” no menu lateral, você é administrador.</label></li>
+    <li><input type="checkbox" id="c3"><label for="c3"><strong>Suba o logo da empresa.</strong> Configurações › Identidade Visual. Ele passa a sair em todos os relatórios.</label></li>
+    <li><input type="checkbox" id="c4"><label for="c4"><strong>Defina o e-mail de resposta.</strong> Configurações › E-mails. É para onde vão as respostas dos candidatos.</label></li>
+    <li><input type="checkbox" id="c5"><label for="c5"><strong>Escreva ao menos um template de e-mail.</strong> Configurações › Templates. Evita redigir do zero toda vez.</label></li>
+    <li><input type="checkbox" id="c6"><label for="c6"><strong>Aplique um filtro no Painel de Entrevistas.</strong> Escolha um cargo e veja os números do topo mudarem junto.</label></li>
+    <li><input type="checkbox" id="c7"><label for="c7"><strong>Abra o dossiê de um candidato.</strong> É o documento que você vai encaminhar aos gestores.</label></li>
+    <li><input type="checkbox" id="c8"><label for="c8"><strong>Crie uma vaga de teste e arquive depois.</strong> Serve para entender o código da vaga e o disparo automático do Banco de Talentos.</label></li>
   </ul>
-  <div class="note"><span class="lbl">Atenção</span><p>Esta lista é só um roteiro de leitura — as marcações somem se você recarregar a página. Marque enquanto lê.</p></div>
+  <div class="margin"><b>Sem memória</b>As marcações valem só nesta leitura — recarregar a página limpa tudo. É um roteiro, não um registro.</div>
 </section>
 
 <section id="entrar">
-  <h2><span class="num">03</span>Entrar no painel</h2>
-  <p class="sub">Há dois caminhos de entrada, e um detalhe que confunde quase todo mundo na primeira vez: o código do cliente.</p>
+  <h2><span class="n">03</span>Entrar no painel</h2>
+  <p class="sub">Dois caminhos de entrada, e um detalhe que confunde quase todo mundo na primeira vez: o código do cliente.</p>
 
   <h3>Com e-mail e senha</h3>
   <ol class="steps">
-    <li><strong>Preencha os três campos.</strong> E-mail corporativo cadastrado, senha e o <strong>Código do Cliente</strong> — quatro letras maiúsculas que identificam a sua empresa, por exemplo <code>ACME</code>. Quem fornece esse código é o administrador da sua empresa.</li>
-    <li><strong>Clique em Entrar.</strong> Se a senha for provisória, o painel leva direto para a troca de senha. A nova precisa ter no mínimo 8 caracteres, com letras e números.</li>
+    <li><strong>Preencha os três campos</strong> E-mail corporativo cadastrado, senha e o <strong>Código do Cliente</strong> — quatro letras maiúsculas que identificam a sua empresa, como <code>ACME</code>. Quem fornece esse código é o administrador da sua empresa.</li>
+    <li><strong>Clique em Entrar</strong> Se a senha for provisória, o painel leva direto para a troca. A nova precisa ter no mínimo 8 caracteres, com letras e números.</li>
   </ol>
 
   <h3>Com Google ou Microsoft</h3>
-  <p>Abaixo do formulário há os dois botões. Clique no provedor onde está o seu e-mail corporativo e autorize. Se o seu e-mail estiver cadastrado em mais de uma empresa, aparece uma tela intermediária para escolher qual empresa acessar nesta sessão.</p>
+  <p>Abaixo do formulário há os dois botões. Clique no provedor onde está o seu e-mail corporativo e autorize. Se o seu e-mail estiver cadastrado em mais de uma empresa, aparece uma tela intermediária para escolher qual acessar nesta sessão.</p>
 
   <h3>Esqueci a senha</h3>
   <p>Na tela de login, clique em <strong>Esqueceu sua senha?</strong>, informe o e-mail e envie. O link chega por e-mail e <strong>vale por 1 hora</strong>. Se o seu e-mail estiver em mais de uma empresa, a mensagem traz um link por empresa — use o da empresa cuja senha você quer trocar.</p>
-  <div class="note">
-    <span class="lbl">Não é bug</span>
-    <p>A tela confirma o envio mesmo quando o e-mail não está cadastrado. É de propósito: se a mensagem mudasse, qualquer pessoa poderia descobrir quais e-mails existem na base testando um por um.</p>
-  </div>
+  <div class="margin"><b>Não é bug</b>A tela confirma o envio mesmo quando o e-mail não está cadastrado. Se a mensagem mudasse, qualquer pessoa descobriria quais e-mails existem na base testando um a um.</div>
 
   <h3>Quanto tempo a sessão dura</h3>
   <ul>
     <li>Enquanto você estiver usando o painel, a sessão se renova sozinha. Ela cai depois de <strong>30 minutos parado</strong>.</li>
-    <li>Existe um teto de <strong>12 horas desde o login</strong>, mesmo trabalhando sem parar. Ao bater esse teto você precisa entrar de novo — é normal e não é perda de dados.</li>
-    <li>Ao fazer logout, a conversa com o assistente SophIA é apagada. No próximo login ele começa do zero.</li>
+    <li>Existe um teto de <strong>12 horas desde o login</strong>, mesmo trabalhando sem parar. Bater esse teto é normal e não perde nada do que já foi salvo.</li>
+    <li>Ao sair, a conversa com o assistente SophIA é apagada. No próximo login ele começa do zero.</li>
   </ul>
 </section>
 
 <section id="papeis">
-  <h2><span class="num">04</span>Quem pode o quê</h2>
-  <p class="sub">Duas coisas definem o que você vê e faz: se você é administrador e qual a sua visibilidade. Da combinação saem três perfis. A sua coluna está destacada na tabela.</p>
+  <h2><span class="n">04</span>Quem pode o quê</h2>
+  <p class="sub">Duas coisas definem o que você vê e faz: se você é administrador e qual a sua visibilidade. Da combinação saem três perfis. A sua coluna está destacada.</p>
 
   <div class="tw">
     <table id="matrix">
-      <thead><tr><th style="min-width:230px">Ação</th><th data-col="adm">Administrador</th><th data-col="all">Vê tudo</th><th data-col="own">Vê só o que criou</th></tr></thead>
+      <thead><tr><th style="min-width:215px">Ação</th><th data-col="adm">Administrador</th><th data-col="all">Vê tudo</th><th data-col="own">Vê só o que criou</th></tr></thead>
       <tbody>
         <tr><td>Ver entrevistas e vagas</td><td class="ok" data-col="adm">Todas</td><td class="ok" data-col="all">Todas</td><td data-col="own">Só as que criou</td></tr>
         <tr><td>Editar candidato e mudar status</td><td class="ok" data-col="adm">Sim</td><td class="ok" data-col="all">Sim</td><td class="ok" data-col="own">Nos registros dele</td></tr>
@@ -573,50 +444,125 @@ footer p{margin:0 0 8px; max-width:58ch}
         <tr><td>Disparar WhatsApp em massa</td><td class="ok" data-col="adm">Sim</td><td class="ok" data-col="all">Sim</td><td class="nope" data-col="own">Não</td></tr>
         <tr><td>Banco de Talentos</td><td class="ok" data-col="adm">Sim</td><td class="ok" data-col="all">Sim</td><td class="nope" data-col="own">Não</td></tr>
         <tr><td>Currículo Match</td><td class="ok" data-col="adm">Sim</td><td class="ok" data-col="all">Sim</td><td class="nope" data-col="own">Não</td></tr>
-        <tr><td>Assistente SophIA (chatbot)</td><td class="ok" data-col="adm">Sim</td><td class="ok" data-col="all">Sim</td><td class="nope" data-col="own">Não</td></tr>
+        <tr><td>Assistente SophIA</td><td class="ok" data-col="adm">Sim</td><td class="ok" data-col="all">Sim</td><td class="nope" data-col="own">Não</td></tr>
         <tr><td>Gestão de Usuários</td><td class="ok" data-col="adm">Sim</td><td class="nope" data-col="all">Não</td><td class="nope" data-col="own">Não</td></tr>
       </tbody>
     </table>
   </div>
 
-  <div class="note">
-    <span class="lbl">Detalhe que gera chamado no suporte</span>
-    <p>Quem vê só o que criou enxerga <strong>entrevistas a partir de 04/04/2026</strong>. As anteriores a essa data não registram quem criou a vaga, então aparecem apenas para administradores e para quem vê tudo. As <strong>vagas</strong> criadas por essa pessoa aparecem normalmente, sem corte de data.</p>
-  </div>
+  <div class="margin"><b>Gera chamado no suporte</b>Quem vê só o que criou enxerga entrevistas a partir de <strong>04/04/2026</strong>. As anteriores não registram quem criou a vaga, então só aparecem para administradores e para quem vê tudo. As vagas dele aparecem sem corte de data.</div>
 
-  <div class="note stop">
-    <span class="lbl">Botão visível não significa permissão</span>
-    <p>Alguns botões aparecem para todo mundo e só recusam a ação ao serem clicados. Isso é intencional: a permissão é conferida no servidor, então não adianta o botão sumir se a decisão real está no outro lado. Se aparecer um aviso de permissão, não é erro — é a trava funcionando.</p>
+  <div class="slab">
+    <b class="t">Botão visível não significa permissão</b>
+    <p>Alguns botões aparecem para todo mundo e só recusam a ação ao serem clicados. É intencional: a permissão é conferida no servidor, então não adianta esconder o botão se a decisão real está do outro lado. Se aparecer um aviso de permissão, não é erro — é a trava funcionando.</p>
   </div>
 </section>
 
 <section id="entrevistas">
-  <h2><span class="num">05</span>Painel de Entrevistas</h2>
-  <p class="sub">É a tela inicial. Tudo nela responde ao recorte atual: se você aplicou filtros, os números do topo, o gráfico e a lista falam só daquele recorte.</p>
+  <h2><span class="n">05</span>Painel de Entrevistas</h2>
+  <p class="sub">É a tela inicial. Tudo nela responde ao recorte atual: com filtros aplicados, os números do topo, o gráfico e a lista falam só daquele recorte.</p>
   <div class="path"><span class="lead">Onde fica</span><b>Menu superior</b><i>›</i><b>Painel de Entrevistas</b></div>
+
+  <figure>
+    <svg viewBox="0 0 700 400" role="img" aria-label="Esquema da tela inicial com barra de menu, indicadores, chips de filtro, botões de ação e a lista de candidatos">
+      <rect x="0" y="0" width="700" height="400" fill="#FCFAF6"/>
+      <rect x="0" y="0" width="700" height="34" fill="#0F1B2C"/>
+      <g font-family="Archivo, sans-serif" font-size="10" fill="#8C9BB0">
+        <text x="18" y="21" fill="#F3EFE7" font-weight="600">SophIA</text>
+        <text x="86" y="21" fill="#F3EFE7">Entrevistas</text><text x="150" y="21">Cargos</text>
+        <text x="200" y="21">Talentos</text><text x="256" y="21">Currículos</text><text x="320" y="21">Configurações</text>
+        <circle cx="648" cy="17" r="8" fill="none" stroke="#8C9BB0"/><text x="648" y="21" text-anchor="middle" font-size="9">3</text>
+        <text x="678" y="21" text-anchor="middle">↩</text>
+      </g>
+
+      <g>
+        <rect x="14" y="52" width="210" height="60" rx="3" fill="#FFF" stroke="#D6CDBE"/>
+        <rect x="239" y="52" width="210" height="60" rx="3" fill="#FFF" stroke="#D6CDBE"/>
+        <rect x="464" y="52" width="210" height="60" rx="3" fill="#FFF" stroke="#D6CDBE"/>
+        <g font-family="Archivo, sans-serif" font-size="9.5" fill="#8A7F6F">
+          <text x="28" y="72">TOTAL FILTRADO</text><text x="253" y="72">SCORE MÉDIO</text><text x="478" y="72">ACIMA DE 70%</text>
+        </g>
+        <g font-family="Archivo, sans-serif" font-size="21" font-weight="700" fill="#0F1B2C">
+          <text x="28" y="99">248</text><text x="253" y="99">71,4</text><text x="478" y="99">96</text>
+        </g>
+      </g>
+
+      <g font-family="Archivo, sans-serif" font-size="9.5">
+        <rect x="14" y="130" width="118" height="21" rx="10.5" fill="#F2E6C7" stroke="#DFCB9B"/><text x="26" y="144" fill="#7A5810">Cidade: Campinas ✕</text>
+        <rect x="140" y="130" width="112" height="21" rx="10.5" fill="#F2E6C7" stroke="#DFCB9B"/><text x="152" y="144" fill="#7A5810">Cargo: Vendas ✕</text>
+        <rect x="260" y="130" width="96" height="21" rx="10.5" fill="#F2E6C7" stroke="#DFCB9B"/><text x="272" y="144" fill="#7A5810">Score &gt; 70 ✕</text>
+        <text x="366" y="144" fill="#9B8E7C">Limpar todos</text>
+
+        <rect x="486" y="128" width="86" height="25" rx="3" fill="#FFF" stroke="#D6CDBE"/><text x="498" y="144" fill="#2B3C53">Filtros</text>
+        <rect x="580" y="128" width="94" height="25" rx="3" fill="#0F1B2C"/><text x="592" y="144" fill="#F0EBE1">Exportar</text>
+        <circle cx="668" cy="128" r="9" fill="#9A7118"/><text x="668" y="131.5" fill="#FFF" font-size="9" font-weight="700" text-anchor="middle">7</text>
+      </g>
+
+      <g>
+        <rect x="14" y="170" width="660" height="26" fill="#E9E2D6" stroke="#D6CDBE"/>
+        <g font-family="Archivo, sans-serif" font-size="9.5" fill="#8A7F6F">
+          <text x="46" y="187">CANDIDATO</text><text x="210" y="187">CARGO</text><text x="360" y="187">SCORE</text><text x="430" y="187">STATUS</text><text x="600" y="187">AÇÕES</text>
+        </g>
+        <rect x="24" y="177" width="11" height="11" rx="2" fill="#FFF" stroke="#B6A995"/>
+      </g>
+      <g font-family="Archivo, sans-serif" font-size="10" fill="#2B3C53">
+        <g>
+          <rect x="14" y="196" width="660" height="34" fill="#FFF" stroke="#E6DFD3"/>
+          <rect x="24" y="207" width="11" height="11" rx="2" fill="#9A7118"/><path d="M26.5 212.5l2 2 4-4" stroke="#FFF" stroke-width="1.4" fill="none"/>
+          <text x="46" y="217">Ana Ribeiro</text><text x="210" y="217">Analista de Vendas</text><text x="360" y="217" font-weight="700">86</text>
+          <rect x="430" y="205" width="74" height="18" rx="9" fill="#DCEBE8" stroke="#BFD9D4"/><text x="440" y="217" fill="#15706A" font-size="9">Entrevista ▾</text>
+          <text x="600" y="217" fill="#9B8E7C">✎ ✉ ⎙ 🗑</text>
+        </g>
+        <g>
+          <rect x="14" y="230" width="660" height="34" fill="#FCFAF6" stroke="#E6DFD3"/>
+          <rect x="24" y="241" width="11" height="11" rx="2" fill="#FFF" stroke="#B6A995"/>
+          <text x="46" y="251">Bruno Carvalho</text><text x="210" y="251">Analista de Vendas</text><text x="360" y="251" font-weight="700">74</text>
+          <rect x="430" y="239" width="74" height="18" rx="9" fill="#F6EFD9" stroke="#E6D8B4"/><text x="440" y="251" fill="#8A6412" font-size="9">Em análise ▾</text>
+          <text x="600" y="251" fill="#9B8E7C">✎ ✉ ⎙ 🗑</text>
+        </g>
+        <g>
+          <rect x="14" y="264" width="660" height="34" fill="#FFF" stroke="#E6DFD3"/>
+          <rect x="24" y="275" width="11" height="11" rx="2" fill="#FFF" stroke="#B6A995"/>
+          <text x="46" y="285">Carla Menezes</text><text x="210" y="285">Consultor Comercial</text><text x="360" y="285" font-weight="700">69</text>
+          <rect x="430" y="273" width="74" height="18" rx="9" fill="#E7E7E4" stroke="#D8D6D0"/><text x="440" y="285" fill="#5A6B80" font-size="9">Recebido ▾</text>
+          <text x="600" y="285" fill="#9B8E7C">✎ ✉ ⎙ 🗑</text>
+        </g>
+      </g>
+
+      <g font-family="Archivo, sans-serif" font-size="10" fill="#9B8E7C">
+        <text x="14" y="324">Exibindo 1–3 de 248</text>
+        <text x="674" y="324" text-anchor="end">‹ 1 2 3 ›</text>
+      </g>
+
+      <g font-family="Archivo, sans-serif" font-size="10" font-weight="700" fill="#FFF">
+        <circle cx="228" cy="60" r="10" fill="#9A7118"/><text x="228" y="63.5" text-anchor="middle">1</text>
+        <circle cx="6" cy="140" r="10" fill="#9A7118"/><text x="6" y="143.5" text-anchor="middle">2</text>
+        <circle cx="668" cy="108" r="10" fill="#9A7118"/><text x="668" y="111.5" text-anchor="middle">3</text>
+        <circle cx="6" cy="207" r="10" fill="#9A7118"/><text x="6" y="210.5" text-anchor="middle">4</text>
+        <circle cx="516" cy="214" r="10" fill="#9A7118"/><text x="516" y="217.5" text-anchor="middle">5</text>
+      </g>
+    </svg>
+    <figcaption><strong>1</strong> indicadores do recorte atual · <strong>2</strong> chips dos filtros ativos, um por valor · <strong>3</strong> a badge conta quantos estão marcados · <strong>4</strong> caixa de seleção com memória entre páginas · <strong>5</strong> a pílula de status é clicável e salva sozinha</figcaption>
+  </figure>
 
   <h3>O que cada número quer dizer</h3>
   <ul>
     <li><strong>Total Filtrado</strong> — quantos candidatos estão no recorte atual.</li>
     <li><strong>Score Médio</strong> — média das notas da IA nesse recorte, de 0 a 100.</li>
     <li><strong>Candidatos acima de 70%</strong> — o corte que o painel adota como “vale olhar”.</li>
-    <li><strong>Últimas 24h / Última hora / No mês</strong> — ritmo de chegada. Serve para saber se uma divulgação está funcionando.</li>
+    <li><strong>Últimas 24h, última hora e no mês</strong> — ritmo de chegada; serve para saber se uma divulgação está funcionando.</li>
     <li><strong>Duração média</strong> — quanto tempo os candidatos levaram na entrevista.</li>
-    <li><strong>Status dos Candidatos</strong> — quantos estão em cada etapa do funil.</li>
-    <li><strong>Top Cargos</strong> — para quais vagas as entrevistas estão indo.</li>
+    <li><strong>Status dos Candidatos</strong> e <strong>Top Cargos</strong> — distribuição pelo funil e pelas vagas.</li>
   </ul>
 
-  <h3>A lista</h3>
-  <p>Uma linha por candidato, paginada. Você escolhe 10, 20, 50 ou 100 por página. Na linha há os botões de <strong>editar</strong>, <strong>enviar e-mail</strong>, <strong>abrir o dossiê</strong> e, para administradores, <strong>excluir</strong>.</p>
-
   <h3>Mudar o status sem sair da lista</h3>
-  <p>A coluna Status é uma pílula clicável. Clique, escolha a nova etapa e pronto — salva sozinho, sem recarregar a página, com um “Salvo” aparecendo por alguns segundos ao lado. Para mudar vários de uma vez, marque as caixas e use a ação de status em massa.</p>
+  <p>A coluna Status é uma pílula clicável: clique, escolha a nova etapa e pronto. Salva sozinha, sem recarregar, com um “Salvo” aparecendo ao lado por alguns segundos. Para mudar vários de uma vez, marque as caixas e use a ação de status em massa.</p>
 </section>
 
 <section id="filtros">
-  <h2><span class="num">06</span>Filtrar e selecionar</h2>
-  <p class="sub">O filtro é a ferramenta mais usada do painel, e a que mais economiza tempo quando bem entendida.</p>
-  <div class="path"><span class="lead">Onde fica</span><b>Painel de Entrevistas</b><i>›</i><b>botão Filtros</b> <span style="color:#8B95A6">(acima da tabela, à direita)</span></div>
+  <h2><span class="n">06</span>Filtrar e selecionar</h2>
+  <p class="sub">A ferramenta mais usada do painel, e a que mais economiza tempo quando bem entendida.</p>
+  <div class="path"><span class="lead">Onde fica</span><b>Painel de Entrevistas</b><i>›</i><b>Filtros</b><span class="q">(acima da tabela, à direita)</span></div>
 
   <h3>Os grupos de filtro</h3>
   <ul>
@@ -626,47 +572,90 @@ footer p{margin:0 0 8px; max-width:58ch}
   </ul>
 
   <h3>Vários valores no mesmo filtro</h3>
-  <p>Cargo, empresa, código da vaga, cidade, criado por e status aceitam <strong>mais de um valor ao mesmo tempo</strong>. Clique no campo, marque quantos quiser e feche. Cada valor escolhido vira um chip próprio acima da tabela, com um X que remove só aquele valor — não o filtro inteiro.</p>
+  <p>Cargo, empresa, código da vaga, cidade, criado por e status aceitam <strong>mais de um valor ao mesmo tempo</strong>. Clique no campo, marque quantos quiser e feche. Cada valor vira um chip próprio, com um X que remove só aquele valor — não o filtro inteiro.</p>
   <p>Modalidade e ordenação continuam de valor único de propósito: marcar as duas modalidades é o mesmo que não filtrar, e ordenação é, por definição, um critério só.</p>
 
-  <div class="note">
-    <span class="lbl">Filtros em cascata</span>
-    <p>Escolher um valor estreita as opções dos outros campos. Se você seleciona a cidade Campinas, a lista de cargos passa a mostrar só os cargos que existem em Campinas. Por isso, se um cargo “sumiu” da lista, geralmente é outro filtro que o excluiu — comece limpando tudo com <strong>Limpar todos</strong>.</p>
-  </div>
+  <div class="margin limit"><b>Filtros em cascata</b>Escolher um valor estreita as opções dos outros campos. Se um cargo “sumiu” da lista, quase sempre é outro filtro que o excluiu — comece por <strong>Limpar todos</strong>.</div>
 
   <h3>Seleção com memória</h3>
-  <p>A caixa no começo de cada linha marca candidatos; a do cabeçalho marca a página inteira. A seleção <strong>sobrevive à troca de página e à troca de filtro</strong> durante a sessão — uma badge azul mostra quantos estão marcados, com um X para limpar.</p>
-  <p>Com gente marcada, três ações mudam de alvo: <strong>Exportar</strong> passa a levar só a seleção, <strong>Feedback em Massa</strong> compõe e-mail para a seleção, e <strong>Apagar Selecionados</strong> (administrador) apaga só a seleção. O menu Exportar sempre diz, numa faixa no topo, se vai exportar os marcados ou o filtro inteiro — leia essa faixa antes de clicar.</p>
+  <p>A caixa no começo de cada linha marca candidatos; a do cabeçalho marca a página inteira. A seleção <strong>sobrevive à troca de página e de filtro</strong> durante a sessão, e uma badge mostra quantos estão marcados.</p>
+  <p>Com gente marcada, três ações mudam de alvo: <strong>Exportar</strong> passa a levar só a seleção, <strong>Feedback em Massa</strong> compõe e-mail para ela, e <strong>Apagar Selecionados</strong> apaga só ela. O menu Exportar sempre diz, numa faixa no topo, se vai levar os marcados ou o filtro inteiro — leia essa faixa antes de clicar.</p>
 </section>
 
 <section id="kanban">
-  <h2><span class="num">07</span>Quadro Kanban</h2>
+  <h2><span class="n">07</span>Quadro Kanban</h2>
   <p class="sub">A mesma informação da lista, em colunas. Serve para enxergar o processo inteiro de uma vaga e mover gente rápido.</p>
-  <div class="path"><span class="lead">Onde fica</span><b>Painel de Entrevistas</b><i>›</i><b>link Kanban</b> <span style="color:#8B95A6">(leva os filtros que você já aplicou)</span></div>
+  <div class="path"><span class="lead">Onde fica</span><b>Painel de Entrevistas</b><i>›</i><b>Kanban</b><span class="q">(leva os filtros já aplicados)</span></div>
+
+  <figure>
+    <svg viewBox="0 0 700 268" role="img" aria-label="Esquema do quadro kanban com seis colunas, cartões, caixas de seleção e um cartão sendo arrastado">
+      <rect x="0" y="0" width="700" height="268" fill="#FCFAF6"/>
+      <g font-family="Archivo, sans-serif" font-size="9.5" font-weight="600">
+        <rect x="12" y="14" width="105" height="22" rx="11" fill="#E7E7E4" stroke="#D8D6D0"/><text x="64" y="29" text-anchor="middle" fill="#5A6B80">Recebido 12</text>
+        <rect x="127" y="14" width="105" height="22" rx="11" fill="#F6EFD9" stroke="#E6D8B4"/><text x="179" y="29" text-anchor="middle" fill="#8A6412">Em análise 6</text>
+        <rect x="242" y="14" width="105" height="22" rx="11" fill="#DCEBE8" stroke="#BFD9D4"/><text x="294" y="29" text-anchor="middle" fill="#15706A">Entrevista 4</text>
+        <rect x="357" y="14" width="105" height="22" rx="11" fill="#E7E9F5" stroke="#D2D6EC"/><text x="409" y="29" text-anchor="middle" fill="#3B478A" font-size="8.5">Feedback 3</text>
+        <rect x="472" y="14" width="105" height="22" rx="11" fill="#E2EDE3" stroke="#C8DCCB"/><text x="524" y="29" text-anchor="middle" fill="#2C6739">Aprovado 2</text>
+        <rect x="587" y="14" width="101" height="22" rx="11" fill="#F4E4E8" stroke="#E4CDD3"/><text x="637" y="29" text-anchor="middle" fill="#7A2E45">Reprovado 5</text>
+      </g>
+      <g font-family="Archivo, sans-serif" font-size="9.5" fill="#2B3C53">
+        <g>
+          <rect x="12" y="48" width="105" height="46" rx="3" fill="#FFF" stroke="#9A7118" stroke-width="1.5"/>
+          <rect x="20" y="56" width="10" height="10" rx="2" fill="#9A7118"/><path d="M22.3 61l1.8 1.8 3.6-3.6" stroke="#FFF" stroke-width="1.3" fill="none"/>
+          <text x="36" y="65">Ana Ribeiro</text><text x="20" y="82" fill="#9B8E7C" font-size="8.5">ACME-VEN01 · 86</text>
+        </g>
+        <g>
+          <rect x="12" y="102" width="105" height="46" rx="3" fill="#FFF" stroke="#9A7118" stroke-width="1.5"/>
+          <rect x="20" y="110" width="10" height="10" rx="2" fill="#9A7118"/><path d="M22.3 115l1.8 1.8 3.6-3.6" stroke="#FFF" stroke-width="1.3" fill="none"/>
+          <text x="36" y="119">Bruno C.</text><text x="20" y="136" fill="#9B8E7C" font-size="8.5">ACME-VEN01 · 74</text>
+        </g>
+        <g opacity=".85">
+          <rect x="12" y="156" width="105" height="46" rx="3" fill="#FFF" stroke="#E6DFD3"/>
+          <rect x="20" y="164" width="10" height="10" rx="2" fill="#FFF" stroke="#B6A995"/>
+          <text x="36" y="173">Carla M.</text><text x="20" y="190" fill="#9B8E7C" font-size="8.5">ACME-VEN01 · 69</text>
+        </g>
+        <rect x="127" y="48" width="105" height="46" rx="3" fill="#FFF" stroke="#E6DFD3"/><text x="135" y="65">Diego A.</text><text x="135" y="82" fill="#9B8E7C" font-size="8.5">ACME-VEN01 · 81</text>
+        <rect x="242" y="48" width="105" height="46" rx="3" fill="#FFF" stroke="#E6DFD3"/><text x="250" y="65">Elisa T.</text><text x="250" y="82" fill="#9B8E7C" font-size="8.5">ACME-VEN01 · 90</text>
+        <rect x="472" y="48" width="105" height="46" rx="3" fill="#FFF" stroke="#E6DFD3"/><text x="480" y="65">Felipe N.</text><text x="480" y="82" fill="#9B8E7C" font-size="8.5">ACME-VEN01 · 88</text>
+      </g>
+      <g>
+        <rect x="248" y="112" width="105" height="46" rx="3" fill="#FFF" stroke="#9A7118" stroke-width="1.5" transform="rotate(-3.5 300 135)" opacity=".96"/>
+        <rect x="242" y="106" width="105" height="58" rx="3" fill="none" stroke="#9A7118" stroke-dasharray="4 3"/>
+        <text x="258" y="132" font-family="Archivo, sans-serif" font-size="9.5" fill="#2B3C53" transform="rotate(-3.5 300 135)">2 cartões</text>
+        <text x="258" y="146" font-family="Archivo, sans-serif" font-size="8.5" fill="#9B8E7C" transform="rotate(-3.5 300 135)">arrastando junto</text>
+      </g>
+      <g stroke="#9A7118" stroke-width="1.3" fill="none" stroke-dasharray="4 3"><path d="M120 76c40 6 70 20 118 46"/></g>
+      <path d="M242 126l-9-2 3 7z" fill="#9A7118"/>
+      <g>
+        <rect x="12" y="220" width="360" height="32" rx="3" fill="#0F1B2C"/>
+        <text x="28" y="240" font-family="Archivo, sans-serif" font-size="10" fill="#F0EBE1" font-weight="600">2 selecionados</text>
+        <rect x="140" y="228" width="112" height="17" rx="2" fill="#1E304A"/><text x="150" y="240" font-family="Archivo, sans-serif" font-size="9" fill="#AEBACA">Mover para… ▾</text>
+        <rect x="262" y="228" width="58" height="17" rx="2" fill="#9A7118"/><text x="291" y="240" font-family="Archivo, sans-serif" font-size="9" fill="#FFF" text-anchor="middle" font-weight="600">Mover</text>
+        <text x="340" y="240" font-family="Archivo, sans-serif" font-size="10" fill="#8C9BB0">✕</text>
+      </g>
+    </svg>
+    <figcaption>Marcar dois cartões e arrastar qualquer um deles leva a seleção inteira. Arrastar um cartão de fora da seleção move só ele — e não limpa o que você já tinha marcado.</figcaption>
+  </figure>
 
   <h3>Como mover</h3>
   <ul>
     <li><strong>Arrastando o cartão</strong> para outra coluna. Não funciona em telas de toque.</li>
-    <li><strong>Pelo seletor de etapa dentro do cartão</strong> — é o caminho para celular e tablet, e também para quem navega por teclado. Os dois fazem exatamente a mesma coisa.</li>
+    <li><strong>Pelo seletor de etapa dentro do cartão</strong> — é o caminho para celular, tablet e teclado. Os dois fazem exatamente a mesma coisa.</li>
   </ul>
 
   <h3>Mover vários de uma vez</h3>
   <ol class="steps">
-    <li><strong>Marque as caixas dos cartões.</strong> <code>Shift + clique</code> numa caixa seleciona o intervalo inteiro dentro da mesma coluna.</li>
-    <li><strong>Use a barra que aparece</strong> com a contagem, o seletor de destino e o botão Mover. Ou arraste qualquer cartão selecionado — a seleção inteira vai junto.</li>
+    <li><strong>Marque as caixas dos cartões</strong> <code>Shift + clique</code> numa caixa seleciona o intervalo inteiro dentro da mesma coluna.</li>
+    <li><strong>Use a barra que aparece</strong> com a contagem, o seletor de destino e o botão Mover — ou arraste qualquer cartão selecionado.</li>
   </ol>
-  <p>Arrastar um cartão que <em>não</em> está selecionado move só ele e <strong>não limpa a sua seleção</strong>. É o mesmo comportamento do Explorador de Arquivos e do Finder.</p>
 
-  <div class="note limit">
-    <span class="lbl">Limites do quadro</span>
-    <p>O kanban carrega até <strong>1.200 candidatos</strong> e mostra 100 cartões por coluna, com “mostrar mais” para revelar o resto. Quando o recorte é maior que isso, um aviso aparece na tela — o quadro nunca corta em silêncio. Se bateu no teto, estreite o filtro.</p>
-  </div>
+  <div class="margin limit"><b>Limites do quadro</b>Carrega até <strong>1.200 candidatos</strong> e mostra 100 cartões por coluna, com “mostrar mais”. Recorte maior que isso aparece avisado na tela — o quadro nunca corta em silêncio.</div>
 
-  <p>Nenhum filtro é obrigatório no kanban. Quando o recorte abrange mais de uma vaga, cada cartão passa a exibir o código da vaga, para você não mover a etapa de um processo achando que está em outro.</p>
+  <p>Nenhum filtro é obrigatório no kanban. Quando o recorte abrange mais de uma vaga, cada cartão passa a exibir o código dela, para você não mover a etapa de um processo achando que está em outro.</p>
 </section>
 
 <section id="ficha">
-  <h2><span class="num">08</span>Ficha do candidato</h2>
+  <h2><span class="n">08</span>Ficha do candidato</h2>
   <p class="sub">A tela onde você corrige dados, lê a avaliação e abre os arquivos que a pessoa enviou.</p>
   <div class="path"><span class="lead">Onde fica</span><b>Lista de Candidatos</b><i>›</i><b>botão de lápis na linha</b></div>
 
@@ -678,43 +667,38 @@ footer p{margin:0 0 8px; max-width:58ch}
   </ul>
 
   <h3>Os arquivos do candidato</h3>
-  <p>Currículo, vídeo da entrevista, análise comportamental e Cartão CNPJ (no fluxo PJ) têm um botão <strong>Abrir</strong> ao lado quando existem. Cada abertura passa por três conferências antes de liberar o arquivo: se você está logado, se o candidato é da sua empresa e se está dentro do que o seu acesso alcança.</p>
-  <div class="note">
-    <span class="lbl">Toda abertura fica registrada</span>
-    <p>“Quem viu o currículo desta pessoa” é uma pergunta que o sistema sabe responder. Isso protege a sua empresa: currículo, vídeo e perfil comportamental são dados pessoais de alguém que não é seu cliente, e a LGPD trata vazamento desse tipo com severidade.</p>
-  </div>
+  <p>Currículo, vídeo da entrevista, análise comportamental e Cartão CNPJ têm um botão <strong>Abrir</strong> ao lado quando existem. Cada abertura passa por três conferências antes de liberar o arquivo: se você está logado, se o candidato é da sua empresa e se ele está dentro do que o seu acesso alcança.</p>
+
+  <div class="margin"><b>Toda abertura fica registrada</b>“Quem viu o currículo desta pessoa” é uma pergunta que o sistema sabe responder — e isso protege a sua empresa numa auditoria de LGPD.</div>
 
   <h3>Rastro do feedback</h3>
-  <p>Quando um e-mail de feedback é enviado, a ficha passa a mostrar em bloco somente-leitura <strong>quando foi enviado, por quem e com qual template</strong>. Esses campos não são editáveis à mão — são carimbados pelo próprio envio, justamente para ninguém reescrever a data de algo que já aconteceu.</p>
+  <p>Quando um e-mail de feedback é enviado, a ficha passa a mostrar em bloco somente-leitura <strong>quando foi enviado, por quem e com qual template</strong>. Esses campos não são editáveis à mão: são carimbados pelo próprio envio, justamente para ninguém reescrever a data de algo que já aconteceu.</p>
 </section>
 
 <section id="dossie">
-  <h2><span class="num">09</span>Dossiê do candidato</h2>
+  <h2><span class="n">09</span>Dossiê do candidato</h2>
   <p class="sub">É o documento que você encaminha ao gestor da área. Reúne, num arquivo só, a avaliação da entrevista e o mapeamento comportamental.</p>
-  <div class="path"><span class="lead">Onde fica</span><b>Lista de Candidatos</b><i>›</i><b>botão de relatório na linha</b> <span style="color:#8B95A6">(abre em PDF na própria aba)</span></div>
+  <div class="path"><span class="lead">Onde fica</span><b>Lista de Candidatos</b><i>›</i><b>botão de relatório na linha</b><span class="q">(abre em PDF na própria aba)</span></div>
 
   <h3>O que tem dentro</h3>
   <ol class="steps">
-    <li><strong>Identificação</strong> — nome, cargo, código da vaga, empresa, data, com o logo da sua empresa no topo.</li>
-    <li><strong>Avaliação da entrevista</strong> — o parecer da IA sobre as respostas.</li>
-    <li><strong>Análise do currículo</strong> — o que a IA leu no documento enviado.</li>
-    <li><strong>Perfil comportamental</strong> — as quatro dimensões com intensidade, tendência principal e secundária, nível de confiança da leitura, destaques, pontos de atenção, o vale do perfil, a aderência ao cargo competência a competência e cargos afins.</li>
-    <li><strong>Pontos fortes e pontos a desenvolver.</strong></li>
+    <li><strong>Identificação</strong> Nome, cargo, código da vaga, empresa e data, com o logo da sua empresa no topo.</li>
+    <li><strong>Avaliação da entrevista</strong> O parecer da IA sobre as respostas.</li>
+    <li><strong>Análise do currículo</strong> O que a IA leu no documento enviado.</li>
+    <li><strong>Perfil comportamental</strong> As quatro dimensões com intensidade, tendência principal e secundária, nível de confiança da leitura, destaques, pontos de atenção, vale do perfil, aderência ao cargo competência a competência e cargos afins.</li>
+    <li><strong>Pontos fortes e pontos a desenvolver</strong></li>
   </ol>
 
-  <div class="note">
-    <span class="lbl">Leia o selo de confiança primeiro</span>
-    <p>O nível de confiança da leitura comportamental aparece logo no começo, não enterrado no fim. Um perfil marcado como <strong>confiança baixa</strong> não deve embasar decisão sozinho — significa que as respostas não deram sinal suficiente, não que a pessoa tem um problema.</p>
-  </div>
+  <div class="margin warn"><b>Leia o selo de confiança primeiro</b>Confiança <strong>baixa</strong> significa que as respostas não deram sinal suficiente — não que a pessoa tem um problema. Um perfil assim não deve embasar decisão sozinho.</div>
 
   <p>Quem fez o teste comportamental recebe o dossiê completo; quem não fez recebe o mesmo documento sem essa seção. O gráfico do perfil sai como radar no PDF e como barras no Word — os dois mostram exatamente os mesmos números, então não podem discordar.</p>
   <p>No fim do documento há uma nota dizendo que o resultado é orientativo. Ela aparece <strong>uma vez só</strong>, e isso é de propósito.</p>
 </section>
 
 <section id="exportar">
-  <h2><span class="num">10</span>Exportações</h2>
-  <p class="sub">O menu Exportar tem nove itens organizados em quatro grupos. Cada grupo resolve um problema diferente — escolher errado é o motivo mais comum de “o arquivo não veio como eu queria”.</p>
-  <div class="path"><span class="lead">Onde fica</span><b>Painel de Entrevistas</b><i>›</i><b>botão Exportar</b> <span style="color:#8B95A6">(a badge mostra quantos estão selecionados)</span></div>
+  <h2><span class="n">10</span>Exportações</h2>
+  <p class="sub">O menu Exportar tem nove itens em quatro grupos. Cada grupo resolve um problema diferente — escolher errado é o motivo mais comum de “o arquivo não veio como eu queria”.</p>
+  <div class="path"><span class="lead">Onde fica</span><b>Painel de Entrevistas</b><i>›</i><b>Exportar</b><span class="q">(a badge mostra quantos estão marcados)</span></div>
 
   <div class="tw">
     <table>
@@ -722,331 +706,336 @@ footer p{margin:0 0 8px; max-width:58ch}
       <tbody>
         <tr><td><strong>Planilhas</strong></td><td>Excel, CSV</td><td>Uma linha por candidato, todas as colunas. Para analisar em massa.</td><td>1.000</td></tr>
         <tr><td><strong>Relatório único</strong></td><td>PDF, Word</td><td>Um documento com todos os candidatos do recorte, um card por pessoa.</td><td>50 / 1.000</td></tr>
-        <tr><td><strong>Um dossiê por pessoa</strong></td><td>PDF, Word</td><td>Um <code>.zip</code> com um arquivo por candidato. Para encaminhar a um gestor sem entregar os dados dos outros.</td><td>25 / 50</td></tr>
+        <tr><td><strong>Um dossiê por pessoa</strong></td><td>PDF, Word</td><td>Um <code>.zip</code> com um arquivo por candidato. Para mandar a um gestor sem entregar os dados dos outros.</td><td>25 / 50</td></tr>
         <tr><td><strong>Arquivos anexados</strong></td><td>Currículos, Testes</td><td>Um <code>.zip</code> com os arquivos que os próprios candidatos enviaram.</td><td>150 · 60 MB</td></tr>
       </tbody>
     </table>
   </div>
 
   <h3>Os nomes dos arquivos</h3>
-  <p>Todos os três tipos de <code>.zip</code> usam o mesmo padrão: <code>nome-do-candidato_AAAA-MM-DD.ext</code>. A data nesse formato ordena alfabeticamente na mesma ordem em que ordena cronologicamente. Homônimos ganham <code>_2</code>, <code>_3</code> — e só quando há colisão de verdade. Como o padrão é igual nos três pacotes, você consegue juntar dossiê, currículo e teste da mesma pessoa numa pasta sem renomear nada.</p>
+  <p>Os três tipos de <code>.zip</code> usam o mesmo padrão: <code>nome-do-candidato_AAAA-MM-DD.ext</code>. Essa data ordena alfabeticamente na mesma ordem em que ordena cronologicamente. Homônimos ganham <code>_2</code>, <code>_3</code>, e só quando há colisão real. Como o padrão é igual nos três pacotes, dá para juntar dossiê, currículo e teste da mesma pessoa numa pasta sem renomear nada.</p>
 
   <h3>Por que o PDF e o Word não trazem os links dos arquivos</h3>
-  <p>Depois que currículos e vídeos passaram a exigir login, o link desses campos só abre para quem tem acesso ao painel. Numa <strong>planilha</strong>, que circula entre pessoas logadas, isso funciona — e as colunas continuam lá. No <strong>PDF e no Word</strong>, que são os documentos que saem da empresa, o link não abriria nada para quem recebe. Então esses quatro campos foram retirados desses dois formatos. Um campo que só produz frustração é pior que um campo ausente.</p>
+  <p>Depois que currículos e vídeos passaram a exigir login, esses links só abrem para quem tem acesso ao painel. Numa <strong>planilha</strong>, que circula entre pessoas logadas, funciona — e as colunas continuam lá. No <strong>PDF e no Word</strong>, que são os documentos que saem da empresa, o link não abriria nada para quem recebe. Um campo que só produz frustração é pior que um campo ausente.</p>
 
-  <div class="note limit">
-    <span class="lbl">Quando alguém fica de fora do pacote</span>
-    <p>Nos zips de anexos, se um candidato não tinha arquivo, o arquivo estava hospedado fora do painel ou o download falhou, entra um <code>_RELATORIO-DA-EXPORTACAO.txt</code> dentro do próprio pacote explicando quem ficou de fora e por quê. Se você pediu 20 e recebeu 17, a resposta está nesse arquivo — não conte à mão.</p>
-  </div>
+  <div class="margin limit"><b>Quando alguém fica de fora</b>Nos zips de anexos entra um <code>_RELATORIO-DA-EXPORTACAO.txt</code> listando quem não veio e por quê: sem arquivo, hospedado fora do painel, ou falha no download. Se você pediu 20 e recebeu 17, a resposta está ali.</div>
 
-  <p>Toda exportação respeita os filtros da tela e o seu nível de acesso. Se há linhas marcadas, a seleção manda e os filtros são ignorados.</p>
+  <p>Toda exportação respeita os filtros da tela e o seu nível de acesso. Havendo linhas marcadas, a seleção manda e os filtros são ignorados.</p>
 </section>
 
 <section id="emails">
-  <h2><span class="num">11</span>E-mails aos candidatos</h2>
+  <h2><span class="n">11</span>E-mails aos candidatos</h2>
   <p class="sub">Dois fluxos: um a um, ou para todos os selecionados de uma vez.</p>
 
   <h3>Individual</h3>
-  <div class="path"><span class="lead">Onde fica</span><b>Lista de Candidatos</b><i>›</i><b>botão de envelope na linha</b></div>
-  <p>Você pode carregar um dos três templates configurados (que preenchem assunto e corpo), editar livremente e enviar. O endereço de resposta vem de Configurações → E-mails.</p>
+  <div class="path"><span class="lead">Onde fica</span><b>Lista de Candidatos</b><i>›</i><b>envelope na linha</b></div>
+  <p>Você carrega um dos três templates configurados, que preenche assunto e corpo, edita livremente e envia. O endereço de resposta vem de Configurações › E-mails.</p>
 
   <h3>Em massa</h3>
   <div class="path"><span class="lead">Onde fica</span><b>Marque os candidatos</b><i>›</i><b>Feedback em Massa</b></div>
-  <p>Você escreve <strong>uma</strong> mensagem e o painel personaliza para cada destinatário, trocando as variáveis:</p>
-  <ul>
-    <li><code>[Nome do Candidato]</code></li>
-    <li><code>[Nome da Vaga]</code></li>
-    <li><code>[Sua Empresa]</code></li>
-  </ul>
-  <p>Ao final, o painel informa quantos foram enviados e quantos falharam. Envios em massa têm nova tentativa automática para falhas temporárias, então um número pequeno de falhas costuma se resolver sozinho.</p>
+  <p>Você escreve <strong>uma</strong> mensagem e o painel personaliza para cada destinatário, trocando <code>[Nome do Candidato]</code>, <code>[Nome da Vaga]</code> e <code>[Sua Empresa]</code>. Ao final, ele informa quantos foram enviados e quantos falharam. Falhas temporárias são tentadas de novo automaticamente, então um número pequeno costuma se resolver sozinho.</p>
 
-  <div class="note stop">
-    <span class="lbl">Cuidado ao escrever feedback para quem já foi decidido</span>
-    <p>Se algum selecionado já está em <strong>Aprovado</strong> ou <strong>Reprovado</strong>, o painel avisa antes — porque um feedback padrão enviado a quem já foi aprovado é o tipo de erro que não dá para desfazer.</p>
+  <div class="slab">
+    <b class="t">Cuidado com quem já foi decidido</b>
+    <p>Se algum selecionado já está em <strong>Aprovado</strong> ou <strong>Reprovado</strong>, o painel avisa antes de enviar. Um feedback padrão disparado para quem já foi aprovado é o tipo de erro que não dá para desfazer.</p>
   </div>
 </section>
 
 <section id="cargos">
-  <h2><span class="num">12</span>Gestão de Cargos</h2>
+  <h2><span class="n">12</span>Gestão de Cargos</h2>
   <p class="sub">A lista de todas as vagas da empresa, ativas e arquivadas.</p>
   <div class="path"><span class="lead">Onde fica</span><b>Menu superior</b><i>›</i><b>Gestão de Cargos</b></div>
 
   <h3>A coluna Entrevistas</h3>
-  <p>Mostra quantas entrevistas <strong>avaliadas</strong> a vaga já recebeu. Quando há limite definido, aparece o teto junto — <code>8/20</code>. Entrevistas iniciadas mas não concluídas não entram nessa conta.</p>
+  <p>Mostra quantas entrevistas <strong>avaliadas</strong> a vaga já recebeu. Com limite definido, aparece o teto junto: <code>8/20</code>. Entrevistas iniciadas e não concluídas não entram nessa conta.</p>
 
   <h3>Ações na linha</h3>
   <ul>
     <li><strong>Lápis</strong> — editar a vaga.</li>
-    <li><strong>Envelope</strong> — convidar candidatos (só em vagas ativas).</li>
+    <li><strong>Envelope</strong> — convidar candidatos, só em vagas ativas.</li>
     <li><strong>WhatsApp</strong> — aparece quando o recurso está contratado e o modelo de mensagem foi aprovado.</li>
-    <li><strong>Caixa</strong> — arquivar. Em vagas arquivadas, vira uma <strong>seta circular</strong> de reativar.</li>
+    <li><strong>Caixa</strong> — arquivar. Em vagas arquivadas vira uma <strong>seta circular</strong> de reativar.</li>
     <li><strong>Lixeira</strong> — excluir para sempre. <span class="pill adm">Só administrador</span></li>
   </ul>
 
   <h3>Ações em massa</h3>
-  <p>Há caixa de seleção por linha e um “selecionar todos” no cabeçalho, com memória entre páginas e filtros. Com vagas marcadas: <strong>arquivar selecionadas</strong> (todos os perfis, dentro do que cada um enxerga, e só nas que estão ativas) e <strong>excluir selecionadas</strong> <span class="pill adm">só administrador</span>. Ao terminar, o painel diz quantas foram efetivamente afetadas — que pode ser menos do que você marcou, se algumas já estavam arquivadas.</p>
+  <p>Há caixa por linha e “selecionar todos” no cabeçalho, com memória entre páginas e filtros. Com vagas marcadas: <strong>arquivar selecionadas</strong>, disponível para todos os perfis dentro do que cada um enxerga e só nas que estão ativas, e <strong>excluir selecionadas</strong> <span class="pill adm">só administrador</span>. Ao terminar, o painel diz quantas foram efetivamente afetadas — que pode ser menos do que você marcou, se algumas já estavam arquivadas.</p>
 </section>
 
 <section id="criar-vaga">
-  <h2><span class="num">13</span>Criar e editar uma vaga</h2>
+  <h2><span class="n">13</span>Criar e editar uma vaga</h2>
   <div class="path"><span class="lead">Onde fica</span><b>Gestão de Cargos</b><i>›</i><b>Criar nova vaga</b></div>
+
+  <figure>
+    <svg viewBox="0 0 700 128" role="img" aria-label="Anatomia do código da vaga: prefixo automático da empresa, hífen e sufixo escolhido por você">
+      <rect x="0" y="0" width="700" height="128" fill="#FCFAF6"/>
+      <text x="350" y="62" font-family="JetBrains Mono, monospace" font-size="38" font-weight="500" text-anchor="middle" fill="#0F1B2C">ACME<tspan fill="#B6A995">-</tspan><tspan fill="#9A7118">VENDAS01</tspan></text>
+      <g stroke="#B6A995" stroke-width="1.2" fill="none">
+        <path d="M200 76v14c0 4 3 7 7 7h55"/>
+        <path d="M486 76v14c0 4-3 7-7 7h-55"/>
+      </g>
+      <g font-family="Archivo, sans-serif" font-size="11">
+        <text x="200" y="35" text-anchor="middle" fill="#5A6B80" font-size="10">prefixo</text>
+        <text x="486" y="35" text-anchor="middle" fill="#9A7118" font-size="10">sufixo</text>
+        <text x="266" y="101" fill="#5A6B80">o painel adiciona sozinho, a partir do seu código de cliente</text>
+      </g>
+      <text x="424" y="119" font-family="Archivo, sans-serif" font-size="11" text-anchor="end" fill="#9A7118">você escolhe · letras e números, sem hífen</text>
+    </svg>
+    <figcaption>É esse código que liga cada entrevista à vaga. Por isso ele não pode ser alterado depois — mudá-lo desconectaria todo mundo que já entrevistou.</figcaption>
+  </figure>
 
   <h3>Coluna da esquerda: como a triagem funciona</h3>
   <ul>
-    <li><strong>Título, empresa e modelo de trabalho</strong> (presencial, híbrido ou remoto).</li>
-    <li><strong>Código</strong> — você escreve só o sufixo; o prefixo da empresa entra sozinho. Fica assim: <code>ACME-VENDAS01</code>.</li>
+    <li><strong>Título, empresa e modelo de trabalho</strong> — presencial, híbrido ou remoto.</li>
+    <li><strong>Código</strong> — você escreve só o sufixo.</li>
     <li><strong>Solicitar vídeo</strong>, com pergunta condicional.</li>
     <li><strong>Análise comportamental</strong> — liga o teste que alimenta a seção comportamental do dossiê.</li>
     <li><strong>Currículo obrigatório</strong>.</li>
-    <li><strong>Divulgar no portal</strong> — publica a vaga no seu site público de vagas.</li>
-    <li><strong>Idioma da entrevista</strong> — além do português, inglês ou espanhol.</li>
-    <li><strong>Limite de entrevistas e data de validade</strong> — opcionais, explicados na próxima seção.</li>
+    <li><strong>Divulgar no portal</strong> — publica a vaga no seu site público.</li>
+    <li><strong>Idioma da entrevista</strong> — português, inglês ou espanhol.</li>
+    <li><strong>Limite de entrevistas e data de validade</strong> — opcionais, na próxima seção.</li>
   </ul>
 
-  <div class="note limit">
-    <span class="lbl">Antes de exigir vídeo</span>
-    <p>Exigir vídeo na triagem aumenta a desistência em cerca de <strong>40%</strong>. Vale muito para vagas de atendimento, vendas e liderança, onde a comunicação é o critério. Para vagas técnicas de alto volume, costuma custar mais candidatos do que entrega em informação.</p>
-  </div>
+  <div class="margin warn"><b>Antes de exigir vídeo</b>Exigir vídeo na triagem aumenta a desistência em cerca de <strong>40%</strong>. Compensa em vendas, atendimento e liderança, onde comunicação é o critério. Em vagas técnicas de alto volume costuma custar mais candidatos do que entrega em informação.</div>
 
   <h3>Coluna da direita: o conteúdo</h3>
   <p>Descrição sumária, responsabilidades, requisitos e diferenciais — um item por linha em cada campo.</p>
 
   <h3>Gerar com IA</h3>
   <ol class="steps">
-    <li><strong>Escreva em linguagem solta</strong> no campo de instruções. Por exemplo: “Analista de Vendas com 2 anos de experiência, Excel intermediário, foco em prospecção”.</li>
-    <li><strong>Clique em Preencher com IA.</strong> Em segundos os quatro campos da direita vêm preenchidos.</li>
-    <li><strong>Edite à vontade.</strong> A IA é ponto de partida, não versão final — e é o texto final que a entrevista vai usar como referência.</li>
+    <li><strong>Escreva em linguagem solta</strong> Por exemplo: “Analista de Vendas com 2 anos de experiência, Excel intermediário, foco em prospecção”.</li>
+    <li><strong>Clique em Preencher com IA</strong> Em segundos os quatro campos da direita vêm preenchidos.</li>
+    <li><strong>Edite à vontade</strong> A IA é ponto de partida. É o texto final que a entrevista usa como referência.</li>
   </ol>
 
-  <h3>Editar depois</h3>
-  <p>Tudo pode ser alterado, <strong>menos o código</strong>, que fica desabilitado. O código é a chave que liga as entrevistas à vaga: mudá-lo desconectaria todo mundo que já entrevistou.</p>
-
-  <div class="note">
-    <span class="lbl">O que acontece assim que você salva</span>
+  <div class="slab">
+    <b class="t">O que acontece assim que você salva</b>
     <p>O Banco de Talentos roda sozinho, em segundo plano, procurando na sua base candidatos já entrevistados para outros cargos que combinem com esta vaga. Se encontrar, chega um aviso no sino. Você não precisa fazer nada para disparar isso.</p>
   </div>
 </section>
 
 <section id="limite">
-  <h2><span class="num">14</span>Limite de entrevistas e validade</h2>
+  <h2><span class="n">14</span>Limite de entrevistas e validade</h2>
   <p class="sub">Dois controles opcionais que encerram a vaga sozinha, para você não precisar lembrar de fechá-la.</p>
 
   <ul>
-    <li><strong>Máximo de entrevistas</strong> — teto de entrevistas avaliadas. Ao atingir o número, a vaga é arquivada automaticamente e para de receber candidatos. Em branco = sem limite.</li>
-    <li><strong>Data de validade</strong> — depois dessa data, no horário de Brasília, a vaga é arquivada. O arquivamento acontece na próxima vez que alguém abre a tela de Gestão de Cargos. Em branco = sem validade.</li>
+    <li><strong>Máximo de entrevistas</strong> — teto de entrevistas avaliadas. Ao atingir o número, a vaga é arquivada e para de receber candidatos. Em branco: sem limite.</li>
+    <li><strong>Data de validade</strong> — depois dessa data, no horário de Brasília, a vaga é arquivada. O arquivamento acontece na próxima vez que alguém abre a tela de Gestão de Cargos. Em branco: sem validade.</li>
   </ul>
 
-  <div class="note limit">
-    <span class="lbl">A regra que pega todo mundo de surpresa</span>
-    <p>As entrevistas se ligam à vaga <strong>pelo código</strong>. Ao reativar uma vaga com um sufixo <strong>diferente</strong>, a contagem começa do zero no código novo. Ao reativar com o <strong>mesmo</strong> sufixo, as entrevistas anteriores voltam a contar — e, se a vaga já estava no limite, ela é arquivada de novo quase imediatamente.</p>
-  </div>
+  <div class="margin warn"><b>A regra que pega todo mundo</b>As entrevistas se ligam à vaga <strong>pelo código</strong>. Reativar com sufixo diferente recomeça a contagem do zero; reativar com o mesmo sufixo religa as entrevistas anteriores — e a vaga pode fechar de novo na hora.</div>
 </section>
 
 <section id="arquivar">
-  <h2><span class="num">15</span>Arquivar e reativar</h2>
+  <h2><span class="n">15</span>Arquivar e reativar</h2>
+  <p class="sub">Arquivar é reversível e preserva tudo. Excluir não. Esta seção existe para ninguém confundir os dois.</p>
 
-  <h3>Arquivar</h3>
-  <p>Tira a vaga do ar na hora: ela deixa de receber candidatos e o código original é liberado. Os dados continuam na lista, marcados como <strong>Arquivado</strong>. É o que você quer na maioria dos casos — não confunda com excluir.</p>
+  <figure>
+    <svg viewBox="0 0 700 210" role="img" aria-label="Ciclo de vida da vaga entre ativa e arquivada, com os dois gatilhos automáticos e a reativação manual">
+      <rect x="0" y="0" width="700" height="210" fill="#FCFAF6"/>
+      <rect x="46" y="72" width="182" height="62" rx="4" fill="#E2EDE3" stroke="#C8DCCB"/>
+      <text x="137" y="99" font-family="Archivo, sans-serif" font-size="14" font-weight="700" text-anchor="middle" fill="#2C6739">Ativa</text>
+      <text x="137" y="117" font-family="Archivo, sans-serif" font-size="10" text-anchor="middle" fill="#5A7A5F">recebe candidatos</text>
+
+      <rect x="418" y="72" width="182" height="62" rx="4" fill="#E7E7E4" stroke="#D8D6D0"/>
+      <text x="509" y="99" font-family="Archivo, sans-serif" font-size="14" font-weight="700" text-anchor="middle" fill="#5A6B80">Arquivada</text>
+      <text x="509" y="117" font-family="Archivo, sans-serif" font-size="10" text-anchor="middle" fill="#7C8898">dados preservados</text>
+
+      <g stroke="#9A7118" stroke-width="1.5" fill="none"><path d="M228 92h182"/></g>
+      <path d="M418 92l-10-4.5v9z" fill="#9A7118"/>
+      <g font-family="Archivo, sans-serif" font-size="10" text-anchor="middle">
+        <text x="319" y="66" fill="#9A7118" font-weight="600">arquivar</text>
+        <text x="319" y="44" fill="#5A6B80">manual, botão de caixa</text>
+        <text x="319" y="111" fill="#5A6B80">automático: atingiu o máximo</text>
+        <text x="319" y="126" fill="#5A6B80">automático: passou da validade</text>
+      </g>
+
+      <g stroke="#2B3C53" stroke-width="1.5" fill="none" stroke-dasharray="5 3"><path d="M509 138v22c0 5-4 9-9 9H146c-5 0-9-4-9-9v-25"/></g>
+      <path d="M137 134l-4.5 10h9z" fill="#2B3C53"/>
+      <text x="325" y="184" font-family="Archivo, sans-serif" font-size="10" text-anchor="middle" fill="#2B3C53">reativar · exige um <tspan font-weight="700">novo código</tspan>, e limite e validade voltam vazios</text>
+
+      <g>
+        <rect x="620" y="72" width="60" height="62" rx="4" fill="#F4E4E8" stroke="#E4CDD3" stroke-dasharray="4 3"/>
+        <text x="650" y="97" font-family="Archivo, sans-serif" font-size="10" font-weight="700" text-anchor="middle" fill="#7A2E45">excluir</text>
+        <text x="650" y="112" font-family="Archivo, sans-serif" font-size="9" text-anchor="middle" fill="#7A2E45">sem volta</text>
+      </g>
+      <g stroke="#7A2E45" stroke-width="1.2" fill="none"><path d="M600 103h12"/></g>
+      <path d="M620 103l-8-3.5v7z" fill="#7A2E45"/>
+    </svg>
+    <figcaption>Arquivar libera o código e mantém o histórico. Excluir é definitivo e não tem lixeira de recuperação — e só administradores conseguem.</figcaption>
+  </figure>
 
   <h3>Reativar</h3>
-  <p>Clique na seta circular da linha. Abre uma janela pedindo até três coisas:</p>
   <ol class="steps">
-    <li><strong>Novo código (sufixo)</strong> — obrigatório. Só letras e números, sem hífen, por exemplo <code>VENDAS02</code>.</li>
-    <li><strong>Máximo de entrevistas</strong> — opcional. Em branco = sem limite.</li>
-    <li><strong>Data de validade</strong> — opcional. Em branco = sem validade.</li>
+    <li><strong>Novo código (sufixo)</strong> Obrigatório. Só letras e números, sem hífen, como <code>VENDAS02</code>.</li>
+    <li><strong>Máximo de entrevistas</strong> Opcional. Em branco: sem limite.</li>
+    <li><strong>Data de validade</strong> Opcional. Em branco: sem validade.</li>
   </ol>
-  <p>A janela vem <strong>vazia</strong> de propósito, sem repetir os valores antigos. Se a vaga tinha sido arquivada por vencimento e você reativasse mantendo a data antiga, ela seria arquivada de novo no próximo carregamento da lista.</p>
-
-  <div class="note stop">
-    <span class="lbl">Excluir é diferente de arquivar</span>
-    <p>Excluir é definitivo e não tem lixeira de recuperação. Se a intenção é só tirar do ar mantendo o histórico e a possibilidade de voltar, <strong>arquive</strong>.</p>
-  </div>
+  <p>A janela vem <strong>vazia</strong> de propósito, sem repetir os valores antigos: se a vaga tinha sido arquivada por vencimento e você reativasse com a data antiga, ela seria arquivada de novo no próximo carregamento da lista.</p>
 </section>
 
 <section id="convites">
-  <h2><span class="num">16</span>Convidar candidatos</h2>
+  <h2><span class="n">16</span>Convidar candidatos</h2>
   <div class="path"><span class="lead">Onde fica</span><b>Gestão de Cargos</b><i>›</i><b>envelope na linha de uma vaga ativa</b></div>
 
-  <h3>Duas formas</h3>
   <ol class="steps">
-    <li><strong>Link da plataforma.</strong> Copie e divulgue onde quiser — LinkedIn, grupo de WhatsApp, mural. O candidato digita o código da vaga ao entrar.</li>
-    <li><strong>Planilha.</strong> Suba um <code>.xlsx</code> ou <code>.csv</code> com a coluna <strong>Email</strong> (obrigatória) e, se quiser, <strong>Nome</strong>. Até 5 MB. Cada pessoa recebe um convite personalizado já com o link e o código da vaga no corpo.</li>
+    <li><strong>Link da plataforma</strong> Copie e divulgue onde quiser — LinkedIn, grupo de WhatsApp, mural. O candidato digita o código da vaga ao entrar.</li>
+    <li><strong>Planilha</strong> Suba um <code>.xlsx</code> ou <code>.csv</code> com a coluna <strong>Email</strong> (obrigatória) e, se quiser, <strong>Nome</strong>. Até 5 MB. Cada pessoa recebe um convite personalizado já com o link e o código da vaga no corpo.</li>
   </ol>
   <p>Não dá para convidar para vaga arquivada. Reative antes.</p>
 </section>
 
 <section id="carteira" data-roles="adm all">
-  <h2><span class="num">17</span>Exportar a carteira de vagas</h2>
+  <h2><span class="n">17</span>Exportar a carteira de vagas</h2>
   <p class="sub">Leva todas as suas vagas para um arquivo — inclusive as não divulgadas e as arquivadas.</p>
   <div class="path"><span class="lead">Onde fica</span><b>Gestão de Cargos</b><i>›</i><b>Exportar</b></div>
-  <div class="perms"><span class="pill adm">Administrador</span><span class="pill all">Vê tudo</span><span class="pill no">Indisponível para quem vê só o que criou</span></div>
+  <div class="perms"><span class="pill adm">Administrador</span><span class="pill all">Vê tudo</span><span class="pill no">Fora do alcance de quem vê só o que criou</span></div>
 
   <ul>
-    <li><strong>Excel</strong> — uma linha por vaga, 20 colunas. As primeiras são as da tela, na mesma ordem; depois vêm os detalhes que só existem no arquivo. Cabeçalho congelado, autofiltro ligado, arquivadas em cinza e uma aba <strong>Informações</strong> com o cliente, quem exportou e qual recorte foi usado.</li>
+    <li><strong>Excel</strong> — uma linha por vaga, 20 colunas. As primeiras são as da tela, na mesma ordem; depois vêm os detalhes que só existem no arquivo. Cabeçalho congelado, autofiltro ligado, arquivadas em cinza e uma aba <strong>Informações</strong> com o cliente, quem exportou e o recorte usado.</li>
     <li><strong>PDF</strong> — uma ficha por vaga, não uma tabela. Vinte colunas numa página cortariam justamente a descrição, que é o motivo de exportar em PDF. Campos vazios são omitidos.</li>
   </ul>
 
-  <div class="note">
-    <span class="lbl">Seleção manda sobre filtro</span>
-    <p>Se você marcou linhas, a exportação leva a seleção e ignora os filtros da tela. Sem nada marcado, leva o recorte filtrado. O menu diz qual dos dois vai valer antes de você clicar.</p>
-  </div>
+  <div class="margin"><b>Seleção manda sobre filtro</b>Com linhas marcadas, a exportação leva a seleção e ignora os filtros da tela. Sem nada marcado, leva o recorte filtrado. O menu diz qual dos dois vai valer.</div>
 </section>
 
 <section id="talentos" data-roles="adm all">
-  <h2><span class="num">18</span>Banco de Talentos</h2>
-  <p class="sub">Resolve uma situação que toda empresa vive: alguém excelente entrevistou para um cargo, não foi aproveitado, e três meses depois abre uma vaga onde ele encaixaria — e ninguém lembra dele.</p>
+  <h2><span class="n">18</span>Banco de Talentos</h2>
+  <p class="sub">Resolve algo que toda empresa vive: alguém excelente entrevistou para um cargo, não foi aproveitado, e três meses depois abre uma vaga onde ele encaixaria — e ninguém lembra dele.</p>
   <div class="path"><span class="lead">Onde fica</span><b>Menu superior</b><i>›</i><b>Banco de Talentos</b></div>
-  <div class="perms"><span class="pill adm">Administrador</span><span class="pill all">Vê tudo</span><span class="pill no">Indisponível para quem vê só o que criou</span></div>
+  <div class="perms"><span class="pill adm">Administrador</span><span class="pill all">Vê tudo</span><span class="pill no">Fora do alcance de quem vê só o que criou</span></div>
 
   <h3>Como usar</h3>
   <ol class="steps">
-    <li><strong>Escolha a vaga</strong> no seletor. Aparecem as vagas ativas da sua empresa.</li>
-    <li><strong>Refine, se quiser.</strong> Entrevistas dos últimos 3, 6 ou 12 meses, e nota mínima de origem.</li>
-    <li><strong>Clique em Analisar base.</strong> A análise roda em segundo plano — você pode esperar na tela, que se atualiza sozinha, ou sair e receber o aviso no sino.</li>
+    <li><strong>Escolha a vaga</strong> Aparecem as vagas ativas da sua empresa.</li>
+    <li><strong>Refine, se quiser</strong> Entrevistas dos últimos 3, 6 ou 12 meses, e nota mínima de origem.</li>
+    <li><strong>Clique em Analisar base</strong> A análise roda em segundo plano — espere na tela, que se atualiza sozinha, ou saia e receba o aviso no sino.</li>
   </ol>
 
   <h3>O que aparece para cada candidato</h3>
   <ul>
     <li>A <strong>faixa de aderência</strong>: alta, média ou baixa.</li>
-    <li>Um resumo do porquê: quais requisitos ele provavelmente atende, quais pontos fortes combinam, o encaixe comportamental e o que você ainda precisa confirmar numa conversa.</li>
+    <li>O porquê: quais requisitos ele provavelmente atende, quais pontos fortes combinam, o encaixe comportamental e o que confirmar numa conversa.</li>
     <li>Para qual cargo ele tinha entrevistado originalmente.</li>
     <li>Botões de <strong>Convidar</strong>, <strong>WhatsApp</strong> e <strong>Currículo</strong>.</li>
   </ul>
 
-  <div class="note">
-    <span class="lbl">Por que faixa e não porcentagem</span>
-    <p>Faixa é mais honesta. “Aderência 73%” sugere uma precisão que não existe nesse tipo de julgamento, e leva a comparar dois candidatos por dois pontos de diferença. Alta, média e baixa é o nível de certeza que o método realmente entrega — e é acionável: alta você chama, média você lê a justificativa, baixa você ignora.</p>
-  </div>
-  <p>A nota que o candidato tirou no cargo original <strong>não vira</strong> a aderência à vaga nova — ela foi medida contra outros requisitos. A avaliação é refeita contra a vaga que você escolheu. A justificativa de cada um fica gravada, então dá para revisitar o porquê de qualquer classificação depois.</p>
+  <div class="margin limit"><b>Por que faixa e não porcentagem</b>“Aderência 73%” sugere precisão que não existe nesse tipo de julgamento e leva a comparar duas pessoas por dois pontos. Alta, média e baixa é o nível de certeza que o método entrega — e é acionável.</div>
+
+  <p>A nota que o candidato tirou no cargo original <strong>não vira</strong> a aderência à vaga nova: ela foi medida contra outros requisitos. A avaliação é refeita contra a vaga escolhida, e a justificativa fica gravada para você revisitar depois.</p>
 
   <h3>Convidar</h3>
   <p><strong>Um a um:</strong> botão Convidar no cartão, e-mail sai na hora com link e código da vaga.</p>
-  <p><strong>Em massa:</strong> marque os cartões, clique em <strong>Convidar selecionados</strong> e edite assunto e mensagem numa janela com pré-visualização ao vivo. Variáveis disponíveis: <code>[Nome do Candidato]</code>, <code>[Nome da Vaga]</code> e <code>[Código da Vaga]</code>.</p>
-  <div class="note limit">
-    <span class="lbl">Dois detalhes do envio</span>
-    <p>O bloco de instruções com o link de acesso e o código da vaga é acrescentado automaticamente e <strong>não pode ser apagado</strong> — para nenhum candidato receber um convite sem saber como entrar. E quem não tem e-mail cadastrado aparece marcado como “sem e-mail” e é ignorado no envio; o resumo final informa quantos foram enviados, quantos falharam e quantos ficaram de fora.</p>
-  </div>
+  <p><strong>Em massa:</strong> marque os cartões, clique em <strong>Convidar selecionados</strong> e edite assunto e mensagem numa janela com pré-visualização ao vivo. Variáveis: <code>[Nome do Candidato]</code>, <code>[Nome da Vaga]</code> e <code>[Código da Vaga]</code>.</p>
+
+  <div class="margin"><b>Dois detalhes do envio</b>O bloco com link de acesso e código é acrescentado sozinho e não pode ser apagado. Quem não tem e-mail aparece como “sem e-mail” e é ignorado — o resumo final diz quantos foram, falharam e ficaram de fora.</div>
 
   <h3>O resultado fica salvo</h3>
-  <p>Ao voltar ao Banco de Talentos, a última vaga analisada aparece sozinha, sem refazer a análise. Use <strong>Limpar seleção</strong> para começar do zero. Rodar de novo para a mesma vaga substitui o resultado anterior.</p>
-  <p>O cruzamento nunca atravessa empresas: só entram candidatos da sua própria base.</p>
+  <p>Ao voltar, a última vaga analisada aparece sozinha, sem refazer nada. Use <strong>Limpar seleção</strong> para começar do zero. Rodar de novo para a mesma vaga substitui o resultado anterior. O cruzamento nunca atravessa empresas.</p>
 </section>
 
 <section id="curriculos" data-roles="adm all">
-  <h2><span class="num">19</span>Currículo Match</h2>
+  <h2><span class="n">19</span>Currículo Match</h2>
   <p class="sub">Para quando você recebe currículos por fora — indicação, feira, e-mail, banco antigo. A IA lê cada um e diz quais das suas vagas ativas combinam com aquela pessoa.</p>
   <div class="path"><span class="lead">Onde fica</span><b>Menu superior</b><i>›</i><b>Currículo Match</b></div>
-  <div class="perms"><span class="pill adm">Administrador</span><span class="pill all">Vê tudo</span><span class="pill no">Indisponível para quem vê só o que criou</span></div>
+  <div class="perms"><span class="pill adm">Administrador</span><span class="pill all">Vê tudo</span><span class="pill no">Fora do alcance de quem vê só o que criou</span></div>
 
   <h3>Enviar currículos</h3>
   <ol class="steps">
-    <li><strong>Poucos arquivos:</strong> em <strong>Enviar currículos</strong>, arraste até 10 PDFs ou DOCX, de até 3 MB cada.</li>
-    <li><strong>Muitos arquivos:</strong> compacte tudo num <code>.zip</code> — até 200 MB e 1.000 currículos, <strong>um zip por envio</strong>. O upload mostra barra de progresso e vai direto para o armazenamento, sem passar pelo painel.</li>
-    <li><strong>Acompanhe.</strong> A tela mostra “Lendo os arquivos…” enquanto o lote é aberto e vai exibindo os candidatos conforme cada um é analisado. Quando o lote termina, chega um aviso no sino.</li>
+    <li><strong>Poucos arquivos</strong> Em Enviar currículos, arraste até 10 PDFs ou DOCX, de até 3 MB cada.</li>
+    <li><strong>Muitos arquivos</strong> Compacte num <code>.zip</code> — até 200 MB e 1.000 currículos, um zip por envio. O upload mostra barra de progresso.</li>
+    <li><strong>Acompanhe</strong> A tela mostra “Lendo os arquivos…” e vai exibindo os candidatos conforme cada um é analisado. Quando o lote termina, chega um aviso no sino.</li>
   </ol>
 
   <h3>O que você recebe</h3>
-  <p>Uma listagem de candidatos extraídos, cada um com até três vagas suas e a <strong>aderência alta, média ou baixa</strong> para cada. Dali você pode:</p>
-  <ul>
-    <li><strong>Editar</strong> os dados que a IA extraiu (o match em si não é editável).</li>
-    <li>Abrir o <strong>dossiê em PDF</strong> daquele candidato.</li>
-    <li><strong>Convidar por e-mail</strong>, escolhendo entre as vagas que deram match.</li>
-    <li>Chamar por <strong>WhatsApp</strong> — abre o WhatsApp com a mensagem de convite já escrita, incluindo o código da vaga de maior aderência.</li>
-    <li><strong>Exportar em Excel</strong> e, para administradores, <strong>excluir</strong>.</li>
-  </ul>
-  <p>Em massa: convite (cada pessoa recebe a vaga de maior aderência dela), Excel e exclusão.</p>
+  <p>Uma listagem de candidatos extraídos, cada um com até três vagas suas e a <strong>aderência alta, média ou baixa</strong> para cada. Dali dá para editar os dados extraídos, abrir o <strong>dossiê em PDF</strong>, <strong>convidar por e-mail</strong> escolhendo entre as vagas que deram match, chamar por <strong>WhatsApp</strong> com a mensagem já escrita, <strong>exportar em Excel</strong> e, para administradores, <strong>excluir</strong>. Em massa: convite, Excel e exclusão.</p>
 
-  <div class="note">
-    <span class="lbl">Onde isso termina</span>
-    <p>O Currículo Match não cria entrevistas nem mexe nas suas vagas. Quem for convidado e fizer a entrevista entra pelo fluxo normal e aparece no Painel de Entrevistas como qualquer outro candidato.</p>
-  </div>
+  <div class="margin"><b>Onde isso termina</b>O Currículo Match não cria entrevistas nem mexe nas suas vagas. Quem for convidado e fizer a entrevista entra pelo fluxo normal e aparece no Painel de Entrevistas.</div>
 </section>
 
 <section id="whatsapp" data-roles="adm all">
-  <h2><span class="num">20</span>WhatsApp em massa</h2>
+  <h2><span class="n">20</span>WhatsApp em massa</h2>
   <p class="sub">Convida candidatos por WhatsApp usando um modelo de mensagem previamente aprovado. Funciona por créditos.</p>
   <div class="path"><span class="lead">Onde fica</span><b>Gestão de Cargos</b><i>›</i><b>ícone do WhatsApp na linha da vaga</b></div>
-  <div class="perms"><span class="pill adm">Administrador</span><span class="pill all">Vê tudo</span><span class="pill no">Indisponível para quem vê só o que criou</span></div>
+  <div class="perms"><span class="pill adm">Administrador</span><span class="pill all">Vê tudo</span><span class="pill no">Fora do alcance de quem vê só o que criou</span></div>
 
   <h3>Três condições, todas conferidas pelo sistema</h3>
   <ol class="steps">
     <li><strong>Seu acesso</strong> precisa ser administrador ou “vê tudo”.</li>
-    <li><strong>Sua empresa</strong> precisa estar habilitada para WhatsApp — é contratação, não um interruptor do painel.</li>
-    <li><strong>A vaga</strong> precisa ter o modelo de mensagem aprovado. Em aprovação ou rejeitado, o botão aparece desabilitado com o motivo.</li>
+    <li><strong>Sua empresa</strong> precisa estar habilitada — é contratação, não um interruptor do painel.</li>
+    <li><strong>A vaga</strong> precisa ter o modelo aprovado. Em aprovação ou rejeitado, o botão fica desabilitado com o motivo.</li>
   </ol>
 
   <h3>O disparo</h3>
   <ol class="steps">
-    <li><strong>Abra a tela.</strong> Ela mostra o saldo de créditos, a pré-visualização da mensagem e a área de upload.</li>
-    <li><strong>Suba a planilha</strong> (<code>.xlsx</code> ou <code>.csv</code>, até 5 MB). O sistema reconhece colunas chamadas Telefone, WhatsApp, Celular, Phone, Numero, Número ou Tel.</li>
-    <li><strong>Confira o resumo.</strong> Os números são normalizados para o padrão brasileiro; inválidos são descartados e repetidos são removidos. Você vê quantos são válidos, inválidos e duplicados <em>antes</em> de qualquer envio.</li>
-    <li><strong>Confirme.</strong> Cada mensagem consome 1 crédito e o saldo é conferido antes.</li>
+    <li><strong>Abra a tela</strong> Ela mostra o saldo de créditos, a pré-visualização da mensagem e a área de upload.</li>
+    <li><strong>Suba a planilha</strong> <code>.xlsx</code> ou <code>.csv</code>, até 5 MB. Colunas reconhecidas: Telefone, WhatsApp, Celular, Phone, Numero, Número ou Tel.</li>
+    <li><strong>Confira o resumo</strong> Números são normalizados para o padrão brasileiro, inválidos descartados e repetidos removidos. Você vê válidos, inválidos e duplicados antes de qualquer envio.</li>
+    <li><strong>Confirme</strong> Cada mensagem consome 1 crédito, e o saldo é conferido antes.</li>
   </ol>
 
-  <div class="note limit">
-    <span class="lbl">Se o botão não aparece</span>
-    <p>Na maioria dos casos é porque o recurso ainda não foi habilitado para o seu código de cliente. Isso é definido em contrato com a StarMind, junto com a carga de créditos — fale com o suporte.</p>
-  </div>
+  <div class="margin limit"><b>Se o botão não aparece</b>Na maioria dos casos o recurso ainda não foi habilitado para o seu código de cliente. Isso é definido em contrato com a StarMind, junto com a carga de créditos.</div>
 </section>
 
 <section id="portal">
-  <h2><span class="num">21</span>Site de vagas e QR Code</h2>
+  <h2><span class="n">21</span>Site de vagas e QR Code</h2>
   <p class="sub">Sua empresa tem um portal público de vagas, com endereço próprio, onde entram as vagas marcadas como “divulgar”.</p>
   <div class="path"><span class="lead">Onde fica</span><b>Configurações</b><i>›</i><b>Seu Site de Vagas</b></div>
 
   <ul>
-    <li><strong>Logo do portal, redes sociais e um contato</strong> (WhatsApp, telefone ou e-mail) são configurados aqui.</li>
-    <li><strong>O QR Code</strong> do endereço do portal pode ser baixado em JPG em alta resolução, com o endereço escrito abaixo — feito para cartaz, banner e material impresso.</li>
+    <li><strong>Logo do portal, redes sociais e um contato</strong> — WhatsApp, telefone ou e-mail — são configurados aqui.</li>
+    <li><strong>O QR Code</strong> do endereço do portal pode ser baixado em JPG em alta resolução, com o endereço escrito abaixo. Feito para cartaz, banner e material impresso.</li>
     <li><strong>O que decide a publicação</strong> é a opção “Divulgar no portal” de cada vaga.</li>
   </ul>
 
-  <h3>Sobre o logo ficar pequeno no site</h3>
+  <h3>Sobre o logo ficar pequeno</h3>
   <p>É a reclamação mais comum, e quase sempre tem a mesma causa. Ao escolher o arquivo, o painel mede a imagem e avisa em três situações:</p>
   <ul>
     <li><strong>Altura abaixo de 160px</strong> — sai borrado em telas de alta densidade.</li>
-    <li><strong>Formato quase quadrado ou vertical</strong> — o site reserva uma altura fixa, então marcas nesse formato aparecem menores. Isso não tem conserto do lado do site.</li>
+    <li><strong>Formato quase quadrado ou vertical</strong> — o site reserva altura fixa, então marcas nesse formato aparecem menores. Isso não tem conserto do lado do site.</li>
     <li><strong>Arquivo JPG</strong> — sem transparência, a marca aparece dentro de um retângulo branco.</li>
   </ul>
-  <div class="note">
-    <span class="lbl">A causa mais comum, e a menos óbvia</span>
-    <p>Sobra de espaço em branco em volta da marca dentro do arquivo. O site dimensiona a <em>imagem</em>, não a marca — se metade do arquivo é margem vazia, a marca ocupa metade do espaço disponível. Recorte essa sobra e o logo cresce sem você mudar nada no site.</p>
+
+  <div class="slab">
+    <b class="t">A causa mais comum, e a menos óbvia</b>
+    <p>Sobra de espaço em branco em volta da marca dentro do arquivo. O site dimensiona a <em>imagem</em>, não a marca — se metade do arquivo é margem vazia, a marca ocupa metade do espaço disponível. Recorte essa sobra e o logo cresce sem mudar nada no site.</p>
   </div>
   <p>Nenhum desses avisos bloqueia o envio. Você decide se vale trocar o arquivo.</p>
 </section>
 
 <section id="config">
-  <h2><span class="num">22</span>Configurações</h2>
+  <h2><span class="n">22</span>Configurações</h2>
   <div class="path"><span class="lead">Onde fica</span><b>Menu superior</b><i>›</i><b>Configurações</b></div>
 
   <h3>Identidade Visual</h3>
-  <p>Upload do logo em JPG, PNG ou GIF, até 5 MB. Recomendado 300×150 px com fundo transparente. Ele passa a aparecer nos relatórios em PDF e Word. Para tirar, clique em <strong>Remover logo</strong> e salve. A troca vale imediatamente — não é preciso limpar cache.</p>
-  <div class="note"><span class="lbl">São dois logos diferentes</span><p>O daqui vai nos relatórios que saem do painel. O do <a href="#portal">site público de vagas</a> é configurado em outra tela e pode ser outro arquivo — inclusive de propósito, já que os formatos ideais são diferentes.</p></div>
+  <p>Upload do logo em JPG, PNG ou GIF, até 5 MB. Recomendado 300×150 px com fundo transparente. Ele passa a aparecer nos relatórios em PDF e Word. Para tirar, clique em <strong>Remover logo</strong> e salve. A troca vale imediatamente — não precisa limpar cache.</p>
+  <div class="margin"><b>São dois logos</b>O daqui vai nos relatórios que saem do painel. O do <a href="#portal">site público</a> é configurado em outra tela e pode ser outro arquivo — os formatos ideais são diferentes.</div>
 
   <h3>E-mails</h3>
-  <p>O campo <strong>Responder para (Reply-To)</strong> define para onde vão as respostas quando um candidato clica em “Responder”. Vale para envio individual e em massa. Se estiver vazio, respostas se perdem — vale conferir.</p>
+  <p>O campo <strong>Responder para (Reply-To)</strong> define para onde vão as respostas quando um candidato clica em “Responder”. Vale para envio individual e em massa. Vazio, as respostas se perdem — vale conferir.</p>
 
   <h3>Templates</h3>
-  <p>Três modelos editáveis: <strong>A</strong>, <strong>B</strong> e <strong>C</strong>, nas abas do topo. Para cada um, um nome (que também vira o assunto do e-mail) e o corpo, com suporte a <code>[Nome do Candidato]</code>, <code>[Nome da Vaga]</code> e <code>[Sua Empresa]</code>. Depois de salvos, aparecem no seletor das telas de envio.</p>
+  <p>Três modelos editáveis, <strong>A</strong>, <strong>B</strong> e <strong>C</strong>, nas abas do topo. Para cada um, um nome — que também vira o assunto do e-mail — e o corpo, com <code>[Nome do Candidato]</code>, <code>[Nome da Vaga]</code> e <code>[Sua Empresa]</code>. Depois de salvos, aparecem no seletor das telas de envio.</p>
   <p>Uma divisão que funciona bem: A para convite, B para avanço no processo, C para agradecimento e encerramento.</p>
 
   <h3>Relatórios</h3>
-  <p>Dois editores de texto com formatação, para o <strong>cabeçalho</strong> e o <strong>rodapé</strong> dos relatórios em Word: razão social, CNPJ, endereço, o que a sua empresa precisar.</p>
-  <div class="note limit"><span class="lbl">Vale só para o Word</span><p>O PDF tem layout próprio, com capa e rodapé fixos, e não usa esses campos.</p></div>
+  <p>Dois editores com formatação, para o <strong>cabeçalho</strong> e o <strong>rodapé</strong> dos relatórios em Word: razão social, CNPJ, endereço, o que a sua empresa precisar.</p>
+  <div class="margin limit"><b>Vale só para o Word</b>O PDF tem layout próprio, com capa e rodapé fixos, e não usa esses campos.</div>
 </section>
 
 <section id="usuarios" data-roles="adm">
-  <h2><span class="num">23</span>Gestão de Usuários</h2>
+  <h2><span class="n">23</span>Gestão de Usuários</h2>
   <p class="sub">Onde você cria e ajusta os acessos da sua própria empresa.</p>
-  <div class="path"><span class="lead">Onde fica</span><b>Configurações</b><i>›</i><b>Gestão de Usuários</b> <span style="color:#8B95A6">(no menu lateral)</span></div>
+  <div class="path"><span class="lead">Onde fica</span><b>Configurações</b><i>›</i><b>Gestão de Usuários</b><span class="q">(menu lateral)</span></div>
   <div class="perms"><span class="pill adm">Exclusivo de administradores</span></div>
 
   <h3>Criar um usuário</h3>
   <ol class="steps">
-    <li><strong>Informe o e-mail</strong> corporativo no card “Novo Usuário”.</li>
-    <li><strong>Escolha o tipo de acesso</strong> — administrador, vê tudo, ou vê só o que criou.</li>
-    <li><strong>Salve.</strong> Uma senha provisória é gerada e enviada por e-mail. No primeiro login a pessoa é obrigada a trocá-la.</li>
+    <li><strong>Informe o e-mail</strong> corporativo no card Novo Usuário.</li>
+    <li><strong>Escolha o tipo de acesso</strong> Administrador, vê tudo, ou vê só o que criou.</li>
+    <li><strong>Salve</strong> Uma senha provisória é gerada e enviada por e-mail. No primeiro login a pessoa é obrigada a trocá-la.</li>
   </ol>
-  <p>A lista mostra e-mail, tipo, status (<strong>Ativa</strong> ou <strong>Senha provisória pendente</strong>) e data de criação. Para mudar o tipo de alguém, troque no seletor da linha e salve.</p>
+  <p>A lista mostra e-mail, tipo, status — <strong>Ativa</strong> ou <strong>Senha provisória pendente</strong> — e data de criação. Para mudar o tipo de alguém, troque no seletor da linha e salve.</p>
 
   <h3>Excluir</h3>
   <p>Remove o acesso da pessoa. <strong>As entrevistas e vagas que ela criou continuam na base</strong> — você não perde histórico ao desligar alguém.</p>
@@ -1057,26 +1046,23 @@ footer p{margin:0 0 8px; max-width:58ch}
     <li>O <strong>e-mail não muda</strong> — é a chave que liga login e autoria dos registros.</li>
     <li>Toda empresa precisa de <strong>ao menos um administrador</strong>: o último não pode ser rebaixado nem excluído.</li>
   </ul>
-  <div class="note">
-    <span class="lbl">Escolhendo o tipo certo</span>
-    <p>“Vê tudo” costuma ser o padrão saudável para recrutadores. “Vê só o que criou” é para quem contrata para a própria área e não deve enxergar os processos dos colegas — lembrando que ele também perde o assistente, o Banco de Talentos e o WhatsApp. Administrador é para quem cuida da conta, não para todo mundo.</p>
-  </div>
+
+  <div class="margin"><b>Escolhendo o tipo certo</b>“Vê tudo” é o padrão saudável para recrutadores. “Vê só o que criou” serve a quem contrata para a própria área — lembrando que ele perde assistente, Banco de Talentos e WhatsApp. Administrador é para quem cuida da conta, não para todo mundo.</div>
 </section>
 
 <section id="notificacoes">
-  <h2><span class="num">24</span>Notificações</h2>
+  <h2><span class="n">24</span>Notificações</h2>
   <div class="path"><span class="lead">Onde fica</span><b>Sino no canto superior direito</b></div>
-  <p>O número sobre o sino é a contagem de não lidas. Clicar abre as últimas; clicar numa notificação marca como lida e leva ao link, quando houver. <strong>Marcar todas como lidas</strong> fica no topo do painel de notificações. Para o histórico completo, com filtros e paginação, use <strong>Ver todas</strong> no rodapé.</p>
-  <p>É por aqui que chegam os avisos do <a href="#talentos">Banco de Talentos</a> (inclusive o da análise que roda sozinha quando você cria uma vaga) e do <a href="#curriculos">Currículo Match</a> quando um lote termina.</p>
+  <p>O número sobre o sino é a contagem de não lidas. Clicar abre as últimas; clicar numa notificação marca como lida e leva ao link, quando houver. <strong>Marcar todas como lidas</strong> fica no topo. Para o histórico completo, com filtros e paginação, use <strong>Ver todas</strong> no rodapé.</p>
+  <p>É por aqui que chegam os avisos do <a href="#talentos">Banco de Talentos</a> — inclusive o da análise que roda sozinha quando você cria uma vaga — e do <a href="#curriculos">Currículo Match</a> quando um lote termina.</p>
 </section>
 
 <section id="assistente" data-roles="adm all">
-  <h2><span class="num">25</span>Assistente SophIA</h2>
+  <h2><span class="n">25</span>Assistente SophIA</h2>
   <p class="sub">O balão flutuante no canto da tela. Faz duas coisas bem diferentes, e vale saber qual você está pedindo.</p>
-  <div class="perms"><span class="pill adm">Administrador</span><span class="pill all">Vê tudo</span><span class="pill no">Indisponível para quem vê só o que criou</span></div>
+  <div class="perms"><span class="pill adm">Administrador</span><span class="pill all">Vê tudo</span><span class="pill no">Fora do alcance de quem vê só o que criou</span></div>
 
   <h3>Perguntar sobre os seus dados</h3>
-  <p>Ele consulta a base da sua empresa e responde em texto. Exemplos que funcionam bem:</p>
   <ul>
     <li>“Quem teve o maior score em vendas no último mês?”</li>
     <li>“Compare a média de score entre TI e Marketing.”</li>
@@ -1094,20 +1080,18 @@ footer p{margin:0 0 8px; max-width:58ch}
 
   <h3>Como tirar mais dele</h3>
   <ul>
-    <li><strong>Você pode falar por voz</strong> — o botão de microfone transcreve a sua pergunta.</li>
+    <li><strong>Você pode falar por voz</strong> — o botão de microfone transcreve a pergunta.</li>
     <li><strong>Diga o período explicitamente.</strong> “Entre 01/08 e 31/08” rende resposta mais confiável que “mês passado”.</li>
-    <li><strong>Listas longas podem vir cortadas.</strong> Quando isso acontece ele avisa que está mostrando os primeiros resultados. Peça um recorte menor ou um ranking com quantidade definida.</li>
-    <li><strong>Ele só enxerga a sua empresa.</strong> Perguntar sobre outra empresa ou outro código recebe uma recusa educada — não é falha.</li>
+    <li><strong>Listas longas podem vir cortadas.</strong> Quando isso acontece ele avisa. Peça um recorte menor ou um ranking com quantidade definida.</li>
+    <li><strong>Ele só enxerga a sua empresa.</strong> Perguntar sobre outra recebe uma recusa educada — não é falha.</li>
     <li><strong>A conversa vale pela sessão.</strong> Ao sair e entrar de novo, ele começa do zero.</li>
   </ul>
-  <div class="note limit">
-    <span class="lbl">Se ele responde “não consegui montar essa consulta”</span>
-    <p>Significa que a pergunta virou uma consulta que o sistema não aceitou — não que a informação não exista. Reformule de forma mais direta, uma pergunta por vez, e costuma resolver.</p>
-  </div>
+
+  <div class="margin limit"><b>“Não consegui montar essa consulta”</b>Significa que a pergunta virou uma consulta que o sistema não aceitou — não que a informação não exista. Reformule de forma mais direta, uma pergunta por vez.</div>
 </section>
 
 <section id="faq">
-  <h2><span class="num">26</span>Perguntas frequentes</h2>
+  <h2><span class="n">26</span>Perguntas frequentes</h2>
   <p class="sub">Os problemas que mais chegam ao suporte, com a resposta que resolve.</p>
 
   <details class="q" open>
@@ -1115,143 +1099,98 @@ footer p{margin:0 0 8px; max-width:58ch}
     <div class="a">
       <p>É a dúvida número um. O currículo precisa ser um PDF de verdade e estar dentro do limite de tamanho. Quatro causas, em ordem de frequência:</p>
       <ol class="steps">
-        <li><strong>Não é um PDF de verdade.</strong> A pessoa tem o currículo em Word e só trocou a extensão do nome para <code>.pdf</code>. Oriente a abrir no Word ou Google Docs e usar “Salvar como” / “Exportar” em PDF — nunca renomear o arquivo.</li>
-        <li><strong>PDF corrompido.</strong> Gerado com falha ou danificado. Peça para exportar de novo.</li>
-        <li><strong>Arquivo grande demais.</strong> Quase sempre por imagens em alta resolução. Peça uma versão mais leve.</li>
-        <li><strong>Bloqueado pela verificação de segurança.</strong> Gere um currículo novo e limpo a partir do Word.</li>
+        <li><strong>Não é um PDF de verdade</strong> A pessoa tem o currículo em Word e só trocou a extensão para <code>.pdf</code>. Oriente a abrir no Word ou Google Docs e usar “Salvar como” ou “Exportar” em PDF — nunca renomear.</li>
+        <li><strong>PDF corrompido</strong> Gerado com falha ou danificado. Peça para exportar de novo.</li>
+        <li><strong>Arquivo grande demais</strong> Quase sempre por imagens em alta resolução. Peça uma versão mais leve.</li>
+        <li><strong>Bloqueado pela verificação de segurança</strong> Gere um currículo novo e limpo a partir do Word.</li>
       </ol>
-      <p>Resumo para passar ao candidato: exporte um PDF novo a partir do Word ou Google Docs, sem renomear, mantenha o arquivo leve e anexe de novo. <strong>Quem resolve é o próprio candidato, na hora</strong> — não há ajuste a fazer no painel administrativo para isso.</p>
+      <p>Resumo para passar ao candidato: exporte um PDF novo do Word ou Google Docs, sem renomear, mantenha o arquivo leve e anexe de novo. <strong>Quem resolve é o próprio candidato, na hora</strong> — não há ajuste a fazer no painel para isso.</p>
     </div>
   </details>
 
   <details class="q">
     <summary>Os links de currículo de uma planilha antiga não abrem mais</summary>
-    <div class="a">
-      <p>Está correto. Até agosto de 2026 as exportações levavam endereços públicos, que abriam para qualquer pessoa que recebesse o arquivo, sem login e para sempre. Isso foi fechado. As planilhas novas levam links do painel, que exigem sessão. Para ver um currículo antigo, abra o candidato pelo painel.</p>
-    </div>
+    <div class="a"><p>Está correto. Até agosto de 2026 as exportações levavam endereços públicos, que abriam para qualquer pessoa que recebesse o arquivo, sem login e para sempre. Isso foi fechado. As planilhas novas levam links do painel, que exigem sessão. Para ver um currículo antigo, abra o candidato pelo painel.</p></div>
   </details>
 
   <details class="q">
     <summary>Filtrei por um cargo e a lista veio vazia, mas eu sei que há candidatos</summary>
-    <div class="a">
-      <p>Provavelmente há outro filtro ativo estreitando o recorte — os chips acima da tabela mostram todos. Clique em <strong>Limpar todos</strong> e aplique só o cargo. Vale conferir também o período: filtros de data em aberto de uma consulta anterior são a causa mais comum.</p>
-    </div>
+    <div class="a"><p>Provavelmente há outro filtro ativo estreitando o recorte — os chips acima da tabela mostram todos. Clique em <strong>Limpar todos</strong> e aplique só o cargo. Vale conferir o período: datas em aberto de uma consulta anterior são a causa mais comum.</p></div>
   </details>
 
   <details class="q">
     <summary>As opções do filtro estão vazias ou incompletas</summary>
-    <div class="a">
-      <p>As listas dos filtros só oferecem valores de candidatos que a tela realmente exibe — ou seja, entrevistas avaliadas. Se você espera ver um cargo que só teve entrevistas não concluídas, ele não aparece de propósito: escolhê-lo devolveria lista vazia.</p>
-    </div>
+    <div class="a"><p>As listas só oferecem valores de candidatos que a tela realmente exibe, ou seja, entrevistas avaliadas. Se você espera um cargo que só teve entrevistas não concluídas, ele não aparece de propósito: escolhê-lo devolveria lista vazia.</p></div>
   </details>
 
   <details class="q">
     <summary>A vaga sumiu da lista de ativas sozinha</summary>
-    <div class="a">
-      <p>Ela foi arquivada automaticamente por um dos dois motivos: atingiu o <strong>máximo de entrevistas</strong> avaliadas, ou passou da <strong>data de validade</strong>. Ela continua na lista com o marcador Arquivado — mude o filtro de status para Todos e você a encontra. Para voltar a usar, <a href="#arquivar">reative</a> com um código novo.</p>
-    </div>
+    <div class="a"><p>Ela foi arquivada automaticamente: atingiu o <strong>máximo de entrevistas</strong> avaliadas, ou passou da <strong>data de validade</strong>. Continua na lista com o marcador Arquivado — mude o filtro de status para Todos. Para voltar a usar, <a href="#arquivar">reative</a> com um código novo.</p></div>
   </details>
 
   <details class="q">
     <summary>Reativei a vaga e ela foi arquivada de novo na hora</summary>
-    <div class="a">
-      <p>Duas causas possíveis. A primeira: você reativou com o <strong>mesmo sufixo de código</strong>, então as entrevistas anteriores voltaram a contar e o limite foi atingido de novo. A segunda: a data de validade preenchida já passou. Reative com um sufixo diferente e deixe os campos de limite e validade em branco se não quiser que ela feche sozinha.</p>
-    </div>
+    <div class="a"><p>Duas causas. Você reativou com o <strong>mesmo sufixo de código</strong>, então as entrevistas anteriores voltaram a contar e o limite foi atingido de novo; ou a data de validade preenchida já passou. Reative com sufixo diferente e deixe limite e validade em branco se não quiser que ela feche sozinha.</p></div>
   </details>
 
   <details class="q">
     <summary>Exportei 20 candidatos e vieram 17 arquivos</summary>
-    <div class="a">
-      <p>Abra o <code>_RELATORIO-DA-EXPORTACAO.txt</code> dentro do próprio <code>.zip</code>. Ele lista quem ficou de fora e separa três casos: sem arquivo anexado, arquivo hospedado fora do painel (link que o candidato colou), e falha no download. O pacote nunca omite ninguém em silêncio.</p>
-    </div>
+    <div class="a"><p>Abra o <code>_RELATORIO-DA-EXPORTACAO.txt</code> dentro do próprio <code>.zip</code>. Ele lista quem ficou de fora e separa três casos: sem arquivo anexado, arquivo hospedado fora do painel, e falha no download. O pacote nunca omite ninguém em silêncio.</p></div>
   </details>
 
   <details class="q">
     <summary>O botão de WhatsApp não aparece nas minhas vagas</summary>
-    <div class="a">
-      <p>Três possibilidades, nesta ordem: o recurso não está contratado para a sua empresa; o seu acesso é “vê só o que criou”, que não tem WhatsApp; ou o modelo de mensagem daquela vaga ainda não foi aprovado. Nos dois primeiros casos, fale com o administrador ou com o suporte da StarMind.</p>
-    </div>
+    <div class="a"><p>Três possibilidades, nesta ordem: o recurso não está contratado para a sua empresa; o seu acesso é “vê só o que criou”, que não tem WhatsApp; ou o modelo de mensagem daquela vaga ainda não foi aprovado. Nos dois primeiros casos, fale com o administrador ou com o suporte.</p></div>
   </details>
 
   <details class="q">
     <summary>O logo ficou pequeno no site de vagas</summary>
-    <div class="a">
-      <p>Quase sempre é sobra de espaço em branco dentro do arquivo de imagem, ou um logo em formato quadrado/vertical. Veja as três verificações e a explicação completa em <a href="#portal">Site de vagas e QR Code</a>.</p>
-    </div>
+    <div class="a"><p>Quase sempre é sobra de espaço em branco dentro do arquivo, ou um logo quadrado ou vertical. As três verificações e a explicação completa estão em <a href="#portal">Site de vagas e QR Code</a>.</p></div>
   </details>
 
   <details class="q">
     <summary>Fui desconectado no meio do trabalho</summary>
     <div class="a">
-      <p>Há dois relógios. Um de <strong>inatividade</strong>, de 30 minutos, que se renova a cada clique. Outro <strong>absoluto</strong>, de 12 horas desde o login, que não se renova. Se você estava trabalhando e caiu, provavelmente bateu o teto de 12h — entre de novo e siga. Nada do que você salvou se perde.</p>
-      <p>Se acontecer logo após o login, o acesso da sua empresa pode ter sido suspenso. Nesse caso a mensagem pede para falar com o administrador.</p>
+      <p>Há dois relógios: um de <strong>inatividade</strong>, de 30 minutos, que se renova a cada clique; e um <strong>absoluto</strong>, de 12 horas desde o login, que não se renova. Se você estava trabalhando e caiu, bateu o teto de 12h. Entre de novo e siga — nada do que foi salvo se perde.</p>
+      <p>Se acontecer logo após o login, o acesso da sua empresa pode ter sido suspenso; a mensagem então pede para falar com o administrador.</p>
     </div>
   </details>
 
   <details class="q">
     <summary>Cliquei em excluir e recebi um aviso de permissão</summary>
-    <div class="a">
-      <p>Excluir dados é exclusivo de administradores, em qualquer tela. Se a intenção era tirar do ar sem perder o histórico, use <strong>arquivar</strong> — está disponível para todos os perfis.</p>
-    </div>
+    <div class="a"><p>Excluir dados é exclusivo de administradores, em qualquer tela. Se a intenção era tirar do ar sem perder o histórico, use <strong>arquivar</strong> — disponível para todos os perfis.</p></div>
   </details>
 
   <details class="q">
     <summary>Um colega vê candidatos que eu não vejo</summary>
-    <div class="a">
-      <p>Vocês têm visibilidades diferentes. Confira o seu perfil na <a href="#papeis">matriz de permissões</a>. Se você é “vê só o que criou”, enxerga apenas os registros em que consta como criador da vaga — e, para entrevistas, apenas as de 04/04/2026 em diante. Mudar isso é decisão do administrador da sua empresa.</p>
-    </div>
+    <div class="a"><p>Vocês têm visibilidades diferentes. Confira o seu perfil na <a href="#papeis">matriz de permissões</a>. Se você é “vê só o que criou”, enxerga apenas os registros em que consta como criador da vaga — e, para entrevistas, apenas as de 04/04/2026 em diante. Mudar isso é decisão do administrador da sua empresa.</p></div>
   </details>
 
   <details class="q">
     <summary>Preciso apagar os dados de um candidato a pedido dele</summary>
-    <div class="a">
-      <p>Um administrador consegue excluir o registro pelo botão de lixeira na linha do candidato. A ação é definitiva e não tem recuperação. Guarde o registro do pedido antes de executar — a exclusão apaga também o histórico que comprovaria o atendimento.</p>
-    </div>
+    <div class="a"><p>Um administrador consegue excluir o registro pelo botão de lixeira na linha do candidato. A ação é definitiva e não tem recuperação. Guarde o registro do pedido antes de executar — a exclusão apaga também o histórico que comprovaria o atendimento.</p></div>
   </details>
 </section>
 
 <section id="glossario">
-  <h2><span class="num">27</span>Glossário</h2>
+  <h2><span class="n">27</span>Glossário</h2>
   <p class="sub">Os termos que aparecem no painel e nem sempre são autoexplicativos.</p>
   <dl class="gloss">
-    <dt>Código do Cliente</dt>
-    <dd>Quatro letras maiúsculas que identificam a sua empresa no sistema, como <code>ACME</code>. Você digita no login e ele é o prefixo de todo código de vaga.</dd>
-
-    <dt>Código da vaga</dt>
-    <dd>Prefixo da empresa + sufixo que você escolhe, por exemplo <code>ACME-VENDAS01</code>. É a chave que liga as entrevistas à vaga, por isso não pode ser alterado depois.</dd>
-
-    <dt>Score</dt>
-    <dd>Nota de 0 a 100 que a IA dá à entrevista. O painel usa 70 como corte de destaque. É relativa ao cargo para o qual a pessoa entrevistou.</dd>
-
-    <dt>Avaliada (entrevista)</dt>
-    <dd>Entrevista concluída e pontuada. É o que conta no limite da vaga, no Banco de Talentos e nos números do painel. Entrevistas iniciadas e abandonadas não entram.</dd>
-
-    <dt>Status do processo</dt>
-    <dd>A etapa do funil em que o candidato está. Diferente do score: um candidato com nota alta pode estar em Reprovado por decisão sua.</dd>
-
-    <dt>Visibilidade</dt>
-    <dd>Define se você enxerga todos os registros da empresa ou apenas os que você criou. É independente de ser administrador.</dd>
-
-    <dt>Dossiê</dt>
-    <dd>Documento único com a avaliação da entrevista e o perfil comportamental do candidato. É o que se encaminha ao gestor.</dd>
-
-    <dt>Perfil comportamental (CORE)</dt>
-    <dd>Leitura das quatro dimensões de comportamento a partir da entrevista, com tendência principal, secundária e um nível de confiança da própria leitura.</dd>
-
-    <dt>Aderência</dt>
-    <dd>Quanto o perfil de um candidato combina com uma vaga, em faixas alta, média ou baixa. Usada no Banco de Talentos e no Currículo Match.</dd>
-
-    <dt>Modalidade PJ</dt>
-    <dd>Módulo opcional para contratação de fornecedores. Quando ativo, as listagens ganham a coluna Modalidade e o cadastro passa a aceitar razão social, CNPJ e Cartão CNPJ. Vagas PJ nunca são publicadas no portal público.</dd>
-
-    <dt>Créditos de WhatsApp</dt>
-    <dd>Saldo de mensagens contratado. Cada mensagem enviada consome um crédito.</dd>
+    <dt>Código do Cliente</dt><dd>Quatro letras maiúsculas que identificam a sua empresa, como <code>ACME</code>. Você digita no login e ele é o prefixo de todo código de vaga.</dd>
+    <dt>Código da vaga</dt><dd>Prefixo da empresa mais o sufixo que você escolhe, como <code>ACME-VENDAS01</code>. É a chave que liga as entrevistas à vaga, por isso não muda depois.</dd>
+    <dt>Score</dt><dd>Nota de 0 a 100 que a IA dá à entrevista. O painel usa 70 como corte de destaque. É relativa ao cargo para o qual a pessoa entrevistou.</dd>
+    <dt>Avaliada (entrevista)</dt><dd>Entrevista concluída e pontuada. É o que conta no limite da vaga, no Banco de Talentos e nos números do painel.</dd>
+    <dt>Status do processo</dt><dd>A etapa do funil em que o candidato está. Diferente do score: alguém com nota alta pode estar em Reprovado por decisão sua.</dd>
+    <dt>Visibilidade</dt><dd>Define se você enxerga todos os registros da empresa ou apenas os que criou. É independente de ser administrador.</dd>
+    <dt>Dossiê</dt><dd>Documento único com a avaliação da entrevista e o perfil comportamental. É o que se encaminha ao gestor.</dd>
+    <dt>Perfil comportamental (CORE)</dt><dd>Leitura das quatro dimensões de comportamento a partir da entrevista, com tendência principal, secundária e um nível de confiança da própria leitura.</dd>
+    <dt>Aderência</dt><dd>Quanto o perfil de um candidato combina com uma vaga, em faixas alta, média ou baixa. Usada no Banco de Talentos e no Currículo Match.</dd>
+    <dt>Modalidade PJ</dt><dd>Módulo opcional para contratação de fornecedores. Ativo, as listagens ganham a coluna Modalidade e o cadastro aceita razão social, CNPJ e Cartão CNPJ. Vagas PJ nunca vão ao portal público.</dd>
+    <dt>Créditos de WhatsApp</dt><dd>Saldo de mensagens contratado. Cada mensagem enviada consome um crédito.</dd>
   </dl>
 </section>
 
-<div class="noresult" id="noresult">
-  Nada encontrado com esse termo. Tente palavras do painel, como <strong>kanban</strong>, <strong>reativar</strong>, <strong>créditos</strong>, <strong>dossiê</strong> ou <strong>template</strong>.
-</div>
+<div class="none" id="noresult">Nada encontrado com esse termo. Tente palavras do painel, como <strong>kanban</strong>, <strong>reativar</strong>, <strong>créditos</strong>, <strong>dossiê</strong> ou <strong>template</strong>.</div>
 
   </main>
 </div>
@@ -1259,85 +1198,68 @@ footer p{margin:0 0 8px; max-width:58ch}
 <footer>
   <div class="wrap fin">
     <div>
-      <p><strong>Manual do Painel Administrativo SophIA</strong> — escrito para quem usa o painel, não para quem o desenvolve.</p>
-      <p>Se algo aqui não bate com o que você vê na tela, o painel é a referência: ele muda mais rápido que o manual. Fale com o administrador da sua empresa ou com o suporte da StarMind.</p>
+      <p><b>Manual do Painel Administrativo SophIA</b></p>
+      <p>Escrito para quem usa o painel, não para quem o desenvolve. Se algo aqui não bate com o que você vê na tela, o painel é a referência — ele muda mais rápido que o manual. Fale com o administrador da sua empresa ou com o suporte da StarMind.</p>
     </div>
     <div>
-      <p>Dica: use <kbd style="font-family:var(--mono);font-size:.75rem;border:1px solid var(--rule);border-radius:3px;padding:1px 5px;background:#fff">/</kbd> para buscar e <kbd style="font-family:var(--mono);font-size:.75rem;border:1px solid var(--rule);border-radius:3px;padding:1px 5px;background:#fff">Ctrl+P</kbd> para gerar uma versão impressa completa.</p>
+      <p><kbd>/</kbd> buscar &nbsp; <kbd>Esc</kbd> limpar &nbsp; <kbd>Ctrl</kbd>+<kbd>P</kbd> versão impressa</p>
       <p>StarMind · Asgard Vendas Digitais</p>
     </div>
   </div>
 </footer>
 
-<button class="totop" id="totop" aria-label="Voltar ao topo" title="Voltar ao topo">↑</button>
+<button class="totop" id="totop" aria-label="Voltar ao topo" title="Voltar ao topo">&#8593;</button>
 
 <script>
 (function(){
   'use strict';
-
-  /* ---------- perfil do usuário ---------- */
   var ROLE_LABEL = { adm:'Administrador', all:'Vê tudo', own:'Vê só o que criou' };
-  var ROLE_WHY = {
-    own: 'Este recurso não está disponível para quem vê só os próprios registros. Para usá-lo, peça ao administrador da sua empresa para mudar a sua visibilidade.',
-    all: 'Este recurso é exclusivo de administradores. Se você precisa dele com frequência, converse com o administrador da sua empresa.'
+  var WHY = {
+    own:'Este recurso não está disponível para quem vê só os próprios registros. Para usá-lo, peça ao administrador da sua empresa para mudar a sua visibilidade.',
+    all:'Este recurso é exclusivo de administradores. Se você precisa dele com frequência, converse com o administrador da sua empresa.'
   };
   var role = 'all';
-
-  var cards = Array.prototype.slice.call(document.querySelectorAll('.role-card'));
+  var badges = [].slice.call(document.querySelectorAll('.badge'));
   var barTxt = document.getElementById('barRoleTxt');
   var onlyMine = document.getElementById('onlyMine');
+  var input = document.getElementById('q');
+  var noresult = document.getElementById('noresult');
+  var sections = [].slice.call(document.querySelectorAll('main section'));
+  var index = sections.map(function(s){ return { el:s, text:(s.textContent||'').toLowerCase() }; });
 
-  function sectionAllows(sec){
-    var allowed = sec.getAttribute('data-roles');
-    if(!allowed) return true;
-    return allowed.split(/\s+/).indexOf(role) !== -1;
+  function allows(sec){
+    var a = sec.getAttribute('data-roles');
+    return !a || a.split(/\s+/).indexOf(role) !== -1;
   }
 
   function applyRole(){
     barTxt.textContent = ROLE_LABEL[role];
-    cards.forEach(function(c){ c.setAttribute('aria-pressed', String(c.dataset.role === role)); });
-
-    /* destaca a coluna da matriz de permissões */
-    document.querySelectorAll('#matrix [data-col]').forEach(function(cell){
-      cell.classList.toggle('hl', cell.getAttribute('data-col') === role);
+    badges.forEach(function(b){ b.setAttribute('aria-pressed', String(b.dataset.role === role)); });
+    [].forEach.call(document.querySelectorAll('#matrix [data-col]'), function(c){
+      c.classList.toggle('hl', c.getAttribute('data-col') === role);
     });
-
-    /* marca as seções bloqueadas */
-    document.querySelectorAll('main section').forEach(function(sec){
-      var ok = sectionAllows(sec);
-      var gate = sec.querySelector('.gate');
+    sections.forEach(function(sec){
+      var ok = allows(sec), gate = sec.querySelector('.gate');
       if(!ok && !gate){
         gate = document.createElement('div');
         gate.className = 'gate';
-        gate.innerHTML = '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="7" width="10" height="7" rx="1.5"/><path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2"/></svg><span></span>';
-        var h = sec.querySelector('h2');
-        h.parentNode.insertBefore(gate, h.nextSibling);
+        gate.innerHTML = '<svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="7" width="10" height="7" rx="1.5"/><path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2"/></svg><span></span>';
+        sec.insertBefore(gate, sec.querySelector('h2').nextSibling);
       }
       if(gate){
-        gate.classList.toggle('show', !ok);
-        if(!ok) gate.querySelector('span').textContent = ROLE_WHY[role === 'own' ? 'own' : 'all'];
+        gate.classList.toggle('on', !ok);
+        if(!ok) gate.querySelector('span').textContent = WHY[role === 'own' ? 'own' : 'all'];
       }
       sec.classList.toggle('blocked', !ok);
     });
-
     applyVisibility();
   }
 
-  cards.forEach(function(c){
-    c.addEventListener('click', function(){ role = c.dataset.role; applyRole(); });
-  });
+  badges.forEach(function(b){ b.addEventListener('click', function(){ role = b.dataset.role; applyRole(); }); });
   onlyMine.addEventListener('change', applyVisibility);
 
-  /* ---------- busca ---------- */
-  var input = document.getElementById('q');
-  var noresult = document.getElementById('noresult');
-  var sections = Array.prototype.slice.call(document.querySelectorAll('main section'));
-  var index = sections.map(function(sec){
-    return { el: sec, text: (sec.textContent || '').toLowerCase(), id: sec.id };
-  });
-
   function stripMarks(){
-    document.querySelectorAll('main mark').forEach(function(m){
+    [].forEach.call(document.querySelectorAll('main mark'), function(m){
       var p = m.parentNode;
       p.replaceChild(document.createTextNode(m.textContent), m);
       p.normalize();
@@ -1350,90 +1272,79 @@ footer p{margin:0 0 8px; max-width:58ch}
     var walker = document.createTreeWalker(sec, NodeFilter.SHOW_TEXT, null);
     var nodes = [], n;
     while((n = walker.nextNode())){
-      if(n.parentNode.nodeName === 'SCRIPT' || n.parentNode.nodeName === 'STYLE') continue;
+      var tag = n.parentNode.nodeName;
+      if(tag === 'SCRIPT' || tag === 'STYLE' || tag === 'text' || tag === 'tspan') continue;
       if(rx.test(n.nodeValue)) nodes.push(n);
       rx.lastIndex = 0;
     }
-    nodes.slice(0, 80).forEach(function(node){
+    nodes.slice(0, 70).forEach(function(node){
       var span = document.createElement('span');
-      span.innerHTML = node.nodeValue.replace(/[&<>]/g, function(ch){
-        return ({'&':'&amp;','<':'&lt;','>':'&gt;'})[ch];
-      }).replace(rx, '<mark>$1</mark>');
+      span.innerHTML = node.nodeValue
+        .replace(/[&<>]/g, function(c){ return ({'&':'&amp;','<':'&lt;','>':'&gt;'})[c]; })
+        .replace(rx, '<mark>$1</mark>');
       node.parentNode.replaceChild(span, node);
     });
   }
 
   function applyVisibility(){
     var term = (input.value || '').trim().toLowerCase();
-    var hideBlocked = onlyMine.checked;
-    var shown = 0;
-
+    var hide = onlyMine.checked, shown = 0;
     stripMarks();
-
-    index.forEach(function(item){
-      var matchesSearch = !term || item.text.indexOf(term) !== -1;
-      var allowed = sectionAllows(item.el);
-      var visible = matchesSearch && (allowed || !hideBlocked);
-      item.el.classList.toggle('hidden-by-filter', !visible);
-      if(visible){ shown++; if(term) highlight(item.el, term); }
+    index.forEach(function(it){
+      var m = !term || it.text.indexOf(term) !== -1;
+      var ok = allows(it.el);
+      var vis = m && (ok || !hide);
+      it.el.classList.toggle('hid', !vis);
+      if(vis){ shown++; if(term) highlight(it.el, term); }
     });
-
-    noresult.classList.toggle('show', shown === 0);
-
-    document.querySelectorAll('.rail a').forEach(function(a){
-      var id = a.getAttribute('href').slice(1);
-      var sec = document.getElementById(id);
-      a.style.display = (sec && sec.classList.contains('hidden-by-filter')) ? 'none' : '';
+    noresult.classList.toggle('on', shown === 0);
+    [].forEach.call(document.querySelectorAll('.rail a'), function(a){
+      var s = document.getElementById(a.getAttribute('href').slice(1));
+      a.style.display = (s && s.classList.contains('hid')) ? 'none' : '';
     });
   }
 
   var t;
   input.addEventListener('input', function(){ clearTimeout(t); t = setTimeout(applyVisibility, 160); });
   input.addEventListener('keydown', function(e){
-    if(e.key === 'Escape'){ input.value=''; applyVisibility(); input.blur(); }
+    if(e.key === 'Escape'){ input.value = ''; applyVisibility(); input.blur(); }
   });
   document.addEventListener('keydown', function(e){
-    if(e.key === '/' && document.activeElement !== input && !/^(INPUT|TEXTAREA)$/.test(document.activeElement.tagName)){
+    var el = document.activeElement;
+    if(e.key === '/' && el !== input && !/^(INPUT|TEXTAREA|SELECT)$/.test(el.tagName)){
       e.preventDefault(); input.focus(); input.select();
     }
   });
 
-  /* ---------- checklist ---------- */
-  var checklist = document.getElementById('checklist');
-  var boxes = Array.prototype.slice.call(checklist.querySelectorAll('input'));
+  var boxes = [].slice.call(document.querySelectorAll('#checklist input'));
   var fill = document.getElementById('pgFill');
   var ptxt = document.getElementById('pgTxt');
-  function updateProgress(){
-    var done = boxes.filter(function(b){ return b.checked; }).length;
-    fill.style.width = (done / boxes.length * 100) + '%';
-    ptxt.textContent = done + ' de ' + boxes.length + ' concluídos';
-    boxes.forEach(function(b){ b.closest('li').classList.toggle('done', b.checked); });
+  function prog(){
+    var d = boxes.filter(function(b){ return b.checked; }).length;
+    fill.style.width = (d / boxes.length * 100) + '%';
+    ptxt.textContent = d + ' de ' + boxes.length + ' concluídos';
+    boxes.forEach(function(b){ b.parentNode.classList.toggle('done', b.checked); });
   }
-  boxes.forEach(function(b){ b.addEventListener('change', updateProgress); });
-  updateProgress();
+  boxes.forEach(function(b){ b.addEventListener('change', prog); });
+  prog();
 
-  /* ---------- índice ativo ---------- */
   var links = {};
-  document.querySelectorAll('.rail a').forEach(function(a){ links[a.getAttribute('href').slice(1)] = a; });
+  [].forEach.call(document.querySelectorAll('.rail a'), function(a){ links[a.getAttribute('href').slice(1)] = a; });
   if('IntersectionObserver' in window){
     var obs = new IntersectionObserver(function(entries){
       entries.forEach(function(en){
+        if(!en.isIntersecting) return;
         var a = links[en.target.id];
         if(!a) return;
-        if(en.isIntersecting){
-          Object.keys(links).forEach(function(k){ links[k].classList.remove('on'); });
-          a.classList.add('on');
-        }
+        Object.keys(links).forEach(function(k){ links[k].classList.remove('on'); });
+        a.classList.add('on');
       });
-    }, { rootMargin: '-118px 0px -72% 0px' });
+    }, { rootMargin:'-116px 0px -70% 0px' });
     sections.forEach(function(s){ obs.observe(s); });
   }
 
-  /* ---------- voltar ao topo ---------- */
   var totop = document.getElementById('totop');
-  window.addEventListener('scroll', function(){
-    totop.classList.toggle('show', window.scrollY > 900);
-  }, { passive:true });
+  window.addEventListener('scroll', function(){ totop.classList.toggle('on', window.scrollY > 900); }, { passive:true });
   totop.addEventListener('click', function(){
     window.scrollTo({ top:0, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
   });
